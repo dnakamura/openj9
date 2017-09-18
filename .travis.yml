@@ -69,7 +69,7 @@ script:
   # Clear this option so it doesn't interfere with configure detecting the bootjdk
   - unset _JAVA_OPTIONS
   # clone omr and create a openj9 symlink which points to where travis checked out openj9
-  - cd openj9-openjdk-jdk9 && git clone https://github.com/eclipse/openj9-omr.git -b openj9 --depth=1 && ln -s ${TRAVIS_BUILD_DIR} openj9
+  - cd openj9-openjdk-jdk9 && git clone https://github.com/eclipse/openj9-omr.git -b openj9 --depth=1 omr && ln -s ${TRAVIS_BUILD_DIR} openj9
   # Based on https://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/ travis container builds
   # have 2 cores and 4 gigs of memory.  Attempt to double provision the number of cores for the make...
   # Limit number of jobs to work around g++ internal compiler error
