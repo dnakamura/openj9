@@ -64,13 +64,12 @@ before_script:
   - wget https://sourceforge.net/projects/freemarker/files/freemarker/2.3.8/freemarker-2.3.8.tar.gz/download -O freemarker.tgz
   - tar -xzf freemarker.tgz freemarker-2.3.8/lib/freemarker.jar --strip=2
   - cd ..
-  - git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9.git
+  - git clone https://github.com/ibmruntimes/openj9-openjdk-jdk9.git --depth=1 --verbose --progress
 script:
   # Clear this option so it doesn't interfere with configure detecting the bootjdk
   - unset _JAVA_OPTIONS
-  # Point the get_sources script at the OpenJ9 repo that's already been cloned to disk.  
-  # Results in a copy of the source (disk space =( ) but no new network activity so overall a win. 
-  - cd openj9-openjdk-jdk9 && bash ./get_source.sh -openj9-repo=$TRAVIS_BUILD_DIR -openj9-branch=$TRAVIS_BRANCH -openj9-sha=$TRAVIS_COMMIT
+  # clone omr and create a openj9 symlink which points to where travis checked out openj9
+  - cd openj9-openjdk-jdk9 && git clone https://github.com/eclipse/openj9-omr.git -b openj9 --depth=1 && ln -s ${TRAVIS_BUILD_DIR} openj9
   # Based on https://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/ travis container builds
   # have 2 cores and 4 gigs of memory.  Attempt to double provision the number of cores for the make...
   # Limit number of jobs to work around g++ internal compiler error
