@@ -1,0 +1,116 @@
+################################################################################
+# Copyright (c) 2017, 2017 IBM Corp. and others
+#
+# This program and the accompanying materials are made available under
+# the terms of the Eclipse Public License 2.0 which accompanies this
+# distribution and is available at https://www.eclipse.org/legal/epl-2.0/
+# or the Apache License, Version 2.0 which accompanies this distribution and
+# is available at https://www.apache.org/licenses/LICENSE-2.0.
+#
+# This Source Code may also be made available under the following
+# Secondary Licenses when the conditions for such availability set
+# forth in the Eclipse Public License, v. 2.0 are satisfied: GNU
+# General Public License, version 2 with the GNU Classpath
+# Exception [1] and GNU General Public License, version 2 with the
+# OpenJDK Assembly Exception [2].
+#
+# [1] https://www.gnu.org/software/classpath/license.html
+# [2] http://openjdk.java.net/legal/assembly-exception.html
+#
+# SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
+################################################################################
+
+add_tracegen(j9vrb.tdf)
+
+add_library(j9vrb SHARED
+	errormessage_internal.c
+	errormessagebuffer.c
+	errormessageframeworkcfr.c
+	errormessageframeworkrtv.c
+	errormessagehelper.c
+	verbose.c
+
+	../vm/swalk.c
+	../vm/linearswalk.c
+	
+	../codert_vm/jswalk.c #IF J9VM_INTERP_NATIVE_SUPPORT
+	../tr.source/trj9/runtime/MethodMetaData.c #IF J9VM_INTERP_NATIVE_SUPPORT
+	../jit_vm/ctsupport.c #IF J9VM_INTERP_USE_SPLIT_SIDE_TABLES
+	
+	ut_j9vrb.c
+)
+
+#TODO this is platform specific
+set_property(SOURCE ../tr.source/trj9/runtime/MethodMetaData.c APPEND_STRING PROPERTY COMPILE_FLAGS  " -std=gnu89")
+target_include_directories(j9vrb
+	PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}
+		${CMAKE_CURRENT_BINARY_DIR}
+		../tr.source/runtime
+		../tr.source/ibm/runtime
+		../tr.source/codegen
+		../tr.source/ibm/codegen
+		../omr/compiler/codegen
+		../omr/compiler
+		../tr.source/base
+		../tr.source/ibm/base
+		../tr.source
+		../tr.source/ibm
+		../tr.source/trj9/runtime
+		../tr.source/trj9
+		../shared_common/include
+)
+
+target_link_libraries(j9vrb
+	PRIVATE
+		j9vm_interface
+		j9vm_gc_includes
+		j9vm_compiler_defines
+
+		omrgc
+		j9shr
+		j9trc
+		j9stackmap
+		j9util
+		j9utilcore
+		j9verutil
+		j9avl
+		j9hashtable
+		j9pool
+		j9thr
+		j9gcbase
+		j9gcstructs
+		j9gcstats
+		j9gcapi
+		j9modronstartup
+		j9gcvrbjava
+		j9gcvrbold
+		j9gcvrbevents
+		j9modronstandard
+		j9realtime
+		j9gcvlhgc
+		j9gcvrbhdlrstandardjava
+		j9gcvrbhdlrrealtime
+		j9gcvrbhdlrvlhgc
+		j9hookable
+		j9zip
+
+		j9utilcore
+		j9vm
+		j9codert_vm
+		j9modronstandard
+		j9gc
+)
+
+
+
+target_compile_definitions(j9vrb
+	PRIVATE
+		-DJ9VM_INTERP_STACKWALK_TRACING
+		-DJ9VM_INTERP_LINEAR_STACKWALK_TRACING
+)
+
+install(
+	TARGETS j9vrb
+	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}
+)

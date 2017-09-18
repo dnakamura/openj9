@@ -1,0 +1,16 @@
+#include(${CMAKE_ROOT}/Modules/CMakeDetermineCompiler.cmake)
+set(CMAKE_J9VM_C_ALT_COMPILER_LIST gcc-4.6)
+#set(CMAKE_J9VM_C_ALT_COMPILER gcc-4.6)
+set(CMAKE_J9VM_C_ALT_COMPILER_ENV_VAR J9ALTC)
+#_cmake_find_compiler_path(J9VM_C_ALT)
+find_program(CMAKE_J9VM_C_ALT_COMPILER "gcc-4.6")
+
+configure_file(${CMAKE_CURRENT_LIST_DIR}/CMakeJ9VM_C_ALTCompiler.cmake.in
+${CMAKE_PLATFORM_INFO_DIR}/CMakeJ9VM_C_ALTCompiler.cmake @ONLY)
+
+
+set(CMAKE_J9VM_C_ALT_DEFINE_FLAG -D)
+set(CMAKE_INCLUDE_FLAG_J9VM_C_ALT -I)
+set(CMAKE_J9VM_C_ALT_OUTPUT_EXTENSION .o)
+
+set(CMAKE_J9VM_C_ALT_COMPILE_OBJECT "foobar <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT>   -c <SOURCE>")
