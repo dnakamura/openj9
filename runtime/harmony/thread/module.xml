@@ -61,7 +61,7 @@
 			<library name="j9thr">
 				<exclude-if condition="spec.flags.build_cmake"/>
 			</library>
-			<library name="j9thr" type=external>
+			<library name="j9thr" type="external">
 				<exclude-if condition="spec.flags.build_cmake"/>
 			</library>		
 		</libraries>
