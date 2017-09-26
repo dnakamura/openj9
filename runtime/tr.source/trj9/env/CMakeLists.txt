@@ -31,7 +31,7 @@ j9jit_files(
 	env/CHTable.cpp
 	env/ClassLoaderTable.cpp
 	env/CpuUtilization.cpp
-	env/CryptoEnv.cpp
+	#	env/CryptoEnv.cpp
 	env/FilePointer.cpp
 	env/J2IThunk.cpp
 	env/J9ArithEnv.cpp

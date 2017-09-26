@@ -125,14 +125,12 @@ set(TARGET_DEFINES
 # the inlcudes from the SDK
 set(J9_INCLUDES
 	# From jitinclude.mk 
-	${J9SRC}/omr/include_core
 	${J9SRC}/omr/thread
 	${J9SRC}/omr/gc/include 
 	# endjitinclude.mk
 	../ # Frustratingly there are some #include "trj9/frob/baz.hpp" refs  which require this. 
 	${J9SRC}/codert_vm 
 	${J9SRC}/gc_include 
-	${J9SRC}/include 
 	${J9SRC}/gc_glue_java 
 	${J9SRC}/jit_vm 
 	${J9SRC}/nls 
@@ -195,6 +193,7 @@ create_omr_compiler_library(NAME j9jit
 
 
 target_link_libraries(j9jit PRIVATE
+	j9vm_interface
     ${JIT_TARGET_LIBS} ${JIT_TARGET_LIBS} ${JIT_TARGET_LIBS}
 	m #maaaath
 	${CMAKE_DL_LIBS}

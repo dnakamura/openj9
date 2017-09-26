@@ -21,7 +21,7 @@
 ################################################################################
 
 j9jit_files(
-	il/CryptoIl.cpp
+	#	il/CryptoIl.cpp
 	il/J9DataTypes.cpp
 	il/J9IL.cpp
 	il/J9Node.cpp

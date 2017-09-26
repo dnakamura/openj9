@@ -24,7 +24,7 @@ j9jit_files(
 	x/codegen/AllocPrefetchSnippet.cpp
 	x/codegen/CallSnippet.cpp
 	x/codegen/CheckFailureSnippet.cpp
-	x/codegen/CryptoEvaluator.cpp
+	#x/codegen/CryptoEvaluator.cpp
 	x/codegen/ForceRecompilationSnippet.cpp
 	x/codegen/GuardedDevirtualSnippet.cpp
 	x/codegen/J9AheadOfTimeCompile.cpp

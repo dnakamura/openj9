@@ -22,7 +22,7 @@
 
 j9jit_files(
 	optimizer/AllocationSinking.cpp
-	optimizer/CryptoOptimizer.cpp
+	#	optimizer/CryptoOptimizer.cpp
 	optimizer/DataAccessAccelerator.cpp
 	optimizer/DynamicLiteralPool.cpp
 	optimizer/EscapeAnalysis.cpp
@@ -37,7 +37,7 @@ j9jit_files(
 	optimizer/J9EstimateCodeSize.cpp
 	optimizer/J9Inliner.cpp
 	optimizer/J9LocalCSE.cpp
-	optimizer/J9Optimization.cpp
+	#optimizer/J9Optimization.cpp
 	optimizer/J9OptimizationManager.cpp
 	optimizer/J9Optimizer.cpp
 	optimizer/J9Simplifier.cpp

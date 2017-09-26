@@ -25,7 +25,7 @@ j9jit_files(
 	runtime/ClassUnloadAssumption.cpp
 	runtime/codertinit.cpp
 	runtime/CRuntimeImpl.cpp
-	runtime/Crypto.cpp
+	#runtime/Crypto.cpp
 	runtime/DataCache.cpp
 	runtime/emfloat.c
 	runtime/GPUHelpers.cpp
