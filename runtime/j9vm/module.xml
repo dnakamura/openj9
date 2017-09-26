@@ -87,13 +87,33 @@
 		-->
 		<libraries>
 			<library name="socket" type="macro"/>
-			<library name="j9exelib"/>
-			<library name="j9util"/>
-			<library name="j9utilcore"/>
+			<library name="j9exelib">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9exelib" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9util">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9util" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9utilcore">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9utilcore" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 			<library name="j9avl" type="external"/>
 			<library name="j9hashtable" type="external"/>
 			<library name="j9pool" type="external"/>
-			<library name="j9vmi"/>
+			<library name="j9vmi">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9vmi" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 			<!--  for advance toolchain pthread must be last in the link order -->
 			<library name="pthread" type="system">
 				<include-if condition="spec.linux.* and not spec.linux_ztpf.*"/>
