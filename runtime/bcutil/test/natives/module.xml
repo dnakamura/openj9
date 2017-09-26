@@ -45,22 +45,61 @@
 		</makefilestubs>
 		<libraries>
 			<library name="j9dyn_generic_test"/>
-			<library name="j9verutil"/>
-			<library name="j9util"/>
-			<library name="j9utilcore"/>
+			<library name="j9verutil">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9verutil" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9util">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9util" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9utilcore">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9utilcore" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 			<library name="j9avl" type="external"/>
 			<library name="j9hashtable" type="external"/>
-			<library name="j9thr"/>
-			<library name="j9stackmap"/>
-			<library name="j9simplepool"/>
+			<library name="j9thr">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9thr29" type="external">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9stackmap">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9stackmap" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9simplepool">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9simplepool" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 			<library name="j9pool" type="external"/>
 			<library name="j9hookable">
 				<include-if condition="spec.flags.J9VM_OPT_ZIP_SUPPORT"/>
+				<exclude-if condition="spec.flags.build_cmake"/>
+			</library>
+			<library name="j9hookable29" type="external">
+				<include-if condition="spec.flags.build_cmake and spec.flags.J9VM_OPT_ZIP_SUPPORT"/>
 			</library>
 			<library name="j9vmi">
 				<include-if condition="spec.flags.J9VM_OPT_ZIP_SUPPORT"/>
 			</library>
-			<library name="j9bcv"/>
+			<library name="j9bcv">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9bcv" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 		</libraries>
 	</artifact>
 </module>

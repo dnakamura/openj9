@@ -82,7 +82,12 @@
 			<group name="bcutil"/>
 		</objects>
 		<libraries>
-			<library name="j9simplepool"/>
+			<library name="j9simplepool">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9simplepool" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 		</libraries>
 	</artifact>
 </module>
