@@ -16,5 +16,6 @@ target_include_directories(j9jit_vm
 
 target_link_libraries(j9jit_vm
   PRIVATE
+  	j9vm_interface
     j9vm_compiler_defines
 )
