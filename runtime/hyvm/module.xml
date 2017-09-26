@@ -95,7 +95,7 @@
 			<library name="j9vmi">
 				<exclude-if condition="spec.flags.build_cmake" />
 			</library>
-			<library name="j9vmi" type="extenal">
+			<library name="j9vmi" type="external">
 				<include-if condition="spec.flags.build_cmake" />
 			</library>
 			<library name="hyprt"/>
