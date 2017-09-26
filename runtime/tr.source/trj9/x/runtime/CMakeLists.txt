@@ -27,7 +27,7 @@ j9jit_files(
 	x/runtime/X86ArrayTranslate.asm 
 	x/runtime/X86Codert.asm 
 	x/runtime/X86CPUID.asm 
-	x/runtime/X86Crypto.asm 
+	#x/runtime/X86Crypto.asm 
 	x/runtime/X86EncodeUTF16.asm 
 	x/runtime/X86LockReservation.asm 
 	x/runtime/X86PicBuilderC.cpp 
