@@ -135,7 +135,9 @@ set(J9_INCLUDES
 	${J9SRC}/jit_vm 
 	${J9SRC}/nls 
 	${J9SRC}/oti
+	${J9SRC}/include
 	${J9SRC}/util
+	${CMAKE_CURRENT_BINARY_DIR}/../../omr
 )
 # Platform specific list of flags, derived directly from the 
 # Makefiles
