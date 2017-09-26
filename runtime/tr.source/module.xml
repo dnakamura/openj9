@@ -24,6 +24,7 @@
 <module>
 	<artifact type="target" name="j9jitlauncher">
 		<include-if condition="spec.flags.interp_nativeSupport" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>jit j2se</phase>
 
 		<dependencies>
