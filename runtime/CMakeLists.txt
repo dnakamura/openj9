@@ -124,19 +124,22 @@ set_target_properties(omrsig PROPERTIES LINKER_LANGUAGE C)
 add_hookgen(oti/j9jit.hdf ${CMAKE_CURRENT_SOURCE_DIR}/oti/jithook.h ${CMAKE_CURRENT_SOURCE_DIR}/oti/jithook_internal.h)
 add_hookgen(oti/j9vm.hdf ${CMAKE_CURRENT_SOURCE_DIR}/oti/vmhook.h ${CMAKE_CURRENT_SOURCE_DIR}/oti/vmhook_internal.h)
 add_hookgen(oti/zipCachePool.hdf ${CMAKE_CURRENT_SOURCE_DIR}/oti/vmzipcachehook.h ${CMAKE_CURRENT_SOURCE_DIR}/oti/vmzipcachehook_internal.h)
-
-add_dependencies(j9vm_interface
-		${CMAKE_CURRENT_SOURCE_DIR}/oti/jithook.h
-		${CMAKE_CURRENT_SOURCE_DIR}/oti/vmhook.h
-		${CMAKE_CURRENT_SOURCE_DIR}/oti/vmzipcachehook.h
-)
+add_hookgen(gc_include/j9mm.hdf ${CMAKE_CURRENT_SOURCE_DIR}/include/mmhook.h ${CMAKE_CURRENT_SOURCE_DIR}/gc_base/mmhook_internal.h)
 
 add_custom_target(j9vm_hookgen
 	DEPENDS
 	${CMAKE_CURRENT_SOURCE_DIR}/oti/jithook.h
 	${CMAKE_CURRENT_SOURCE_DIR}/oti/vmhook.h
 	${CMAKE_CURRENT_SOURCE_DIR}/oti/vmzipcachehook.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/mmhook.h
 )
+
+add_dependencies(j9vm_interface
+		${CMAKE_CURRENT_SOURCE_DIR}/oti/jithook.h
+		${CMAKE_CURRENT_SOURCE_DIR}/oti/vmhook.h
+		${CMAKE_CURRENT_SOURCE_DIR}/oti/vmzipcachehook.h
+)
+add_dependencies(j9vm_interface j9vm_hookgen)
 if(TARGET omrglue)
 	set(J9VM_LEGACY_GLUE 1)
 else()
