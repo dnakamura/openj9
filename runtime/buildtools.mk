@@ -97,9 +97,11 @@ TRACEGEN_DEFINITION_SENTINELS := $(patsubst %.tdf,%.tracesentinel,$(TRACEGEN_DEF
 
 # process TDF files to generate RAS tracing headers and C files
 trace_merge : buildtrace
+ifndef ENABLE_CMAKE
 	@$(MAKE) -f buildtools.mk $(TRACEGEN_DEFINITION_SENTINELS)
 	./tracemerge -majorversion 5 -minorversion 1 -root .
 	touch $@
+endif
 
 tracing : trace_merge
 
@@ -118,7 +120,9 @@ HOOK_DEFINITION_SENTINELS := $(patsubst %.hdf,%.hooksentinel, $(HOOK_DEFINITION_
 	touch $@
 
 hooktool : buildhook
+ifndef ENABLE_CMAKE
 	@$(MAKE) -f buildtools.mk $(HOOK_DEFINITION_SENTINELS)
+endif
 
 # run configure to generate makefile
 OMRGLUE = ../gc_glue_java
@@ -144,7 +148,11 @@ OMRGLUE_INCLUDES = \
   ../gc_vlhgc
 
 configure : uma
+ifndef ENABLE_CMAKE
 	$(MAKE) -C omr -f run_configure.mk 'SPEC=$(SPEC)' 'OMRGLUE=$(OMRGLUE)' 'CONFIG_INCL_DIR=$(CONFIG_INCL_DIR)' 'OMRGLUE_INCLUDES=$(OMRGLUE_INCLUDES)' 'EXTRA_CONFIGURE_ARGS=$(EXTRA_CONFIGURE_ARGS)'
+else
+	mkdir -p build && cd build && $(CMAKE) -C ../cachefile.cmake ..
+endif
 
 # run UMA to generate makefile
 J9VM_GIT_DIR := $(firstword $(wildcard $(J9_ROOT)/.git) $(wildcard $(J9_ROOT)/workspace/.git))
@@ -154,11 +162,16 @@ UMA_TOOL     := $(JAVA) -cp "sourcetools/lib/om.jar$(PATHSEP)$(FREEMARKER_JAR)$(
 UMA_OPTIONS  := -rootDir . -configDir $(SPEC_DIR) -buildSpecId $(SPEC)
 UMA_OPTIONS  += -buildId $(BUILD_ID) -buildTag $(J9VM_SHA) -jvf tr.source/jit.version
 UMA_OPTIONS  += $(UMA_OPTIONS_EXTRA)
+
 # JAZZ 90097 Don't build executables in OMR because, on Windows, UMA generates .rc files for these executables
 # that require j9version.h, a JVM header file. j9version.h is not available in the include path for OMR modules.
 # This is a temporary workaround. It can be removed after UMA is no longer used to generate files for OMR, and the
 # module.xml files in the OMR directories have been deleted. The JVM doesn't require any of these executables.
 UMA_OPTIONS += -ea tracegen,tracemerge
+
+ifdef ENABLE_CMAKE
+	UMA_OPTIONS += -D build_cmake
+endif
 uma : buildtools copya2e
 	@echo J9VM version: $(J9VM_SHA)
 	$(UMA_TOOL) $(UMA_OPTIONS)
