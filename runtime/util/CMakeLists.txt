@@ -106,11 +106,11 @@ add_library(j9util STATIC
 	#waithelp.c
 	wildcard.c
 
-	ut_j9hshelp.c
-	ut_j9util.c
-	ut_j9vmutil.c
-	ut_module.c
-	ut_srphashtable.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9hshelp.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9util.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9vmutil.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_module.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_srphashtable.c
 
 	openj9_version.c
 	#TODO crappy hard coded platform stuff
@@ -154,9 +154,10 @@ add_library(j9util_b156 STATIC
 	#openlibrary.c
 	vmihelp.c
 	vmargs.c
-	ut_j9util.c
-	ut_j9vmutil.c
-	ut_module.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9util.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9vmutil.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_module.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9hshelp.h
 )
 
 target_link_libraries(j9util_b156
