@@ -31,7 +31,12 @@
 		<phase>core j2se</phase>
 		<includes>
 			<!--  We must include jsig.h from the jsigWrapper library. -->
-			<include path="jsig"/>
+			<include path="jsig">
+				<exclude-if condition="spec.flags.build_cmake"/>
+			</include>
+			<include path="../../jsigWrapper" type="relativepath">
+				<include-if condition="spec.flags.build_cmake"/>
+			</include>
 			<include path="j9include"/>
 			<include path="j9oti"/>
 		</includes>
