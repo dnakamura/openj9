@@ -152,6 +152,8 @@ ifndef ENABLE_CMAKE
 	$(MAKE) -C omr -f run_configure.mk 'SPEC=$(SPEC)' 'OMRGLUE=$(OMRGLUE)' 'CONFIG_INCL_DIR=$(CONFIG_INCL_DIR)' 'OMRGLUE_INCLUDES=$(OMRGLUE_INCLUDES)' 'EXTRA_CONFIGURE_ARGS=$(EXTRA_CONFIGURE_ARGS)'
 else
 	mkdir -p build && cd build && $(CMAKE) -C ../cachefile.cmake ..
+	# copy omr generated headers for the components which still havent been ported
+	cp build/omr/*.h omr/include_core
 endif
 
 # run UMA to generate makefile
