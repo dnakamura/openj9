@@ -89,6 +89,7 @@
 	</artifact>
 	
 	<artifact type="target" name="run_constgen">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core j2se</phase>
 		<dependencies>
 			<dependency name="constgen"/>
