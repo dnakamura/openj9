@@ -26,6 +26,7 @@
         
 	<artifact type="static" name="j9omrport" appendrelease="false">
 		<include-if condition="spec.flags.module_port" />
+        <exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 
 		<!--
