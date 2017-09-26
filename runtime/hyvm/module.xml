@@ -65,15 +65,39 @@
 		<libraries>
 			<library name="omrsig">
 				<include-if condition="spec.flags.J9VM_PORT_OMRSIG_SUPPORT"/>
+				<exclude-if condition="spec.flags.build_cmake"/>
+			</library>
+			<library name="omrsig" type="external">
+				<include-if condition="spec.flags.build_cmake and spec.flags.J9VM_PORT_OMRSIG_SUPPORT"/>
 			</library>
 			<library name="socket" type="macro"/>
-			<library name="j9exelib"/>
-			<library name="j9util"/>
-			<library name="j9utilcore"/>
+			<library name="j9exelib">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9exelib" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9util">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9util" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9utilcore">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9utilcore" type="external">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 			<library name="j9avl" type="external"/>
 			<library name="j9hashtable" type="external"/>						
 			<library name="j9pool" type="external"/>
-			<library name="j9vmi"/>
+			<library name="j9vmi">
+				<exclude-if condition="spec.flags.build_cmake" />
+			</library>
+			<library name="j9vmi" type="extenal">
+				<include-if condition="spec.flags.build_cmake" />
+			</library>
 			<library name="hyprt"/>
 			<library name="hyprtshim"/>
 			<!--  for advance toolchain pthread must be last in the link order -->

@@ -36,6 +36,7 @@
 
 	<artifact type="shared" name="hythr" bundle="jvm" loadgroup="" appendrelease="false">
 		<include-if condition="spec.flags.opt_harmony" />
+		<!--<exclude-if condition="spec.flags.build_cmake" />-->
 		<options>
 			<option name="dllDescription" data="Harmony Thread API"/>
 			<option name="linuxVersionName" data ="HYTHR_0.2" />
@@ -57,7 +58,12 @@
 			<makefilestub data="UMA_DISABLE_DDRGEN=1"/>
 		</makefilestubs>
 		<libraries>
-			<library name="j9thr" />		
+			<library name="j9thr">
+				<exclude-if condition="spec.flags.build_cmake"/>
+			</library>
+			<library name="j9thr" type=external>
+				<exclude-if condition="spec.flags.build_cmake"/>
+			</library>		
 		</libraries>
 	</artifact>
 </module>
