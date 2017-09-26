@@ -42,6 +42,7 @@ UMA insists on adding new artifact targets to the top-level makefile, even if al
 	-->
 
 	<artifact type="static" name="j9utilcore">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<includes>
 			<include path="j9oti"/>

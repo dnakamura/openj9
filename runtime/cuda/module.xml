@@ -25,6 +25,7 @@
 	<xi:include href="exports.xml"></xi:include>
 
 	<artifact type="shared" name="cuda4j" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="CUDA4J" />
 		</options>

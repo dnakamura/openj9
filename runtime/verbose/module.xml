@@ -30,6 +30,7 @@
 
 	<artifact type="shared" name="j9vrb" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_verbose" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isRequired"/>
 			<option name="requiresPrimitiveTable"/>

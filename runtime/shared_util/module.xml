@@ -25,6 +25,7 @@
 <module>
 	<artifact type="static" name="j9shrutil">
 		<include-if condition="spec.flags.module_shared_util" />
+        <exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<includes>
 			<include path="j9include"/>

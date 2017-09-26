@@ -60,6 +60,7 @@
 
 	<artifact type="shared" name="jclse9_" scope="b165" loadgroup="jcl" buildlocal="true">
 		<include-if condition="spec.flags.build_java7"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isRequired">
 				<include-if condition="spec.jcl.Sidecar"/>

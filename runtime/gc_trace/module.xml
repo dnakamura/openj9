@@ -25,6 +25,7 @@
 <module>
 	<artifact type="static" name="j9gctrc">
 		<include-if condition="spec.flags.module_gc_trace" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick</phase>
 		<flags>
 			<flag name="-fpeel-loops" asmflag="false" definition="false">

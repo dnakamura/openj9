@@ -33,6 +33,7 @@
 
 	<artifact type="shared" name="jvm" scope="b156" loadgroup="top" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vm"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="requiresPrimitiveTable"/>
 			<option name="prototypeHeaderFileNames" data="jvm.h"/>

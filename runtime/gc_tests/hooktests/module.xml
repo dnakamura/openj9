@@ -29,6 +29,7 @@
 	</exports>
 
 	<artifact type="shared" name="hooktests" appendrelease="false">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>util</phase>
 		<exports>
 			<group name="all"/>

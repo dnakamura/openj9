@@ -30,6 +30,7 @@
 	</exports>
 
 	<artifact type="shared" name="jcoregen" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="JAVACORE_GENERATOR"/>
 			<option name="isCPlusPlus">

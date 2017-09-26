@@ -23,6 +23,7 @@
 <module>
 	<artifact type="static" name="j9jit_vm">
 		<include-if condition="spec.flags.module_jit_vm" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase> core</phase>
 		<flags>
 			<flag name="$(TR_HOST)"/>

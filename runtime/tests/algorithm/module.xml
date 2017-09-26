@@ -25,6 +25,7 @@
 <module>
 	<artifact type="executable" name="algotest" >
 		<include-if condition="spec.flags.module_algorithm_test" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 		</options>

@@ -23,6 +23,7 @@
 <module>
 	<artifact type="static" name="j9zip">
 		<include-if condition="spec.flags.module_zip" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick</phase>
 		<includes>
 			<include path="j9include"/>

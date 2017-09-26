@@ -30,6 +30,7 @@
 	</exports>
 
 	<artifact type="shared" name="memorywatcher" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="TOOLS_MEMORY_WATCHER"/>
 			<option name="isCPlusPlus">

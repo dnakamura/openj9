@@ -25,6 +25,7 @@
 <module>
 	<artifact type="executable" name="vmLifecyleTests" >
 		<include-if condition="spec.flags.module_lifecycle_tests"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 			<option name="isCPlusPlus">

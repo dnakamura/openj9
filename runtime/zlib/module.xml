@@ -31,6 +31,7 @@
 		
 	<artifact type="shared" name="j9zlib" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_zlib" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isRequired"/>
 			<option name="requiresPrimitiveTable"/>

@@ -29,6 +29,7 @@
 		the JCL library. -->
 	<artifact type="static" name="sunvmi">
 		<include-if condition="spec.flags.opt_sidecar or spec.flags.opt_harmony" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 		<includes>
 			<include path="j9include"/>

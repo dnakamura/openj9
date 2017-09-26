@@ -29,6 +29,7 @@
 	</exports>
 
 	<artifact type="shared" name="j9thrnumanatives">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core j2se</phase>
 		<exports>
 			<group name="all"/>

@@ -30,6 +30,7 @@
 	</exports>
 
 	<artifact type="shared" name="jlmagent" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="JLM_GENERATOR"/>
 			<option name="isCPlusPlus">

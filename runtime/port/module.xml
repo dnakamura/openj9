@@ -173,6 +173,7 @@
 
 	<artifact type="shared" name="j9prt" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_port" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="prototypeHeaderFileNames" data="j9protos.h j9port.h"/>
 			<option name="dllDescription" data="Port"/>

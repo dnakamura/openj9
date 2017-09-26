@@ -54,6 +54,7 @@
 	</exports>
 	
 	<artifact type="shared" name="jsig" appendrelease="false">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="doesNotRequireCMAIN"/>
 			<option name="dllDescription" data="jsig"/>

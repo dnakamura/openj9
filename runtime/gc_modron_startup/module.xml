@@ -25,6 +25,7 @@
 <module>
 	<artifact type="static" name="j9modronstartup">
 		<include-if condition="spec.flags.module_gc_modron_startup" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick</phase>
 		<flags>
 			<flag name="-fpeel-loops" asmflag="false" definition="false">

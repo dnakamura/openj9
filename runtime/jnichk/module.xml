@@ -27,6 +27,7 @@
 
 	<artifact type="shared" name="j9jnichk" bundle="jvm" loadgroup="tools">
 		<include-if condition="spec.flags.module_jnichk" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="prototypeHeaderFileNames" data="jnicheck.h"/>
 			<option name="dllDescription" data="CHECK_JNI"/>

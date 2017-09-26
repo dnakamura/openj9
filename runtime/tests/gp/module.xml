@@ -38,6 +38,7 @@
 
 	<artifact type="shared" name="gptest" appendrelease="false">
 		<include-if condition="spec.flags.module_gptest" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>util j2se</phase>
 		<exports>
 			<group name="all"/>

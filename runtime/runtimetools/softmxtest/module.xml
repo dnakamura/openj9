@@ -30,6 +30,7 @@
 	</exports>
 
 	<artifact type="shared" name="softmxtest" loadgroup="" appendrelease="false">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="TOOLS_SOFTMX_TEST"/>
 			<option name="isCPlusPlus">

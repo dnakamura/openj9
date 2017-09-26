@@ -29,6 +29,7 @@
 
 	<artifact type="shared" name="j9jextract" appendrelease="false" loadgroup="tools">
 		<include-if condition="spec.flags.module_jextractnatives" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus"/> <!-- for modron debugger extensions -->
 			<option name="dllDescription" data="JExtract"/>

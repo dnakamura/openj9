@@ -29,6 +29,7 @@
 	</exports>
 
 	<artifact type="shared" name="vmruntimestateagent" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus">
 				<include-if condition="spec.zos_390.*"/>

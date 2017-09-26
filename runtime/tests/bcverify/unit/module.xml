@@ -26,6 +26,7 @@
 
 	<artifact type="executable" name="bcvunit">
 		<include-if condition="spec.flags.test_cunit"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus">
 				<include-if condition="spec.zos_390.*"/>

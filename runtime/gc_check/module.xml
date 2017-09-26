@@ -23,6 +23,7 @@
 <module>
 	<artifact type="static" name="j9gccheck">
 		<include-if condition="spec.flags.module_gc_check" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<flags>
 			<flag name="-fpeel-loops" asmflag="false" definition="false">

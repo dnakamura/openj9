@@ -25,6 +25,7 @@
 <module>
 	<artifact type="static" name="cutest">
 		<include-if condition="spec.flags.test_cunit"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>util</phase>
 		<includes>
 			<include path="j9include"/>

@@ -30,6 +30,7 @@
 
 	<artifact type="shared" name="j9shr" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_shared" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="prototypeHeaderFileNames" data="shr_bundle.h"/>
 			<option name="isCPlusPlus"/>

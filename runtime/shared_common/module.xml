@@ -25,6 +25,7 @@
 <module>
 	<artifact type="static" name="j9shrcommon">
 		<include-if condition="spec.flags.module_shared_common" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<includes>
 			<include path="j9include"/>

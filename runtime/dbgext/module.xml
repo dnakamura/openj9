@@ -24,6 +24,7 @@
 
 	<artifact type="static" name="j9dbgext">
 		<include-if condition="spec.flags.module_dbgext" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<flags>
 			<flag name="$(TR_HOST)">

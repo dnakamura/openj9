@@ -25,6 +25,7 @@
 <module xmlns:xi="http://www.w3.org/2001/XInclude">
 	<artifact type="shared" name="j9thr" loadgroup="">
 		<include-if condition="spec.flags.module_thread" />
+    <exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 
 		<!--

@@ -32,6 +32,7 @@
 		
 	<artifact type="static" name="j9gcbase">
 		<include-if condition="spec.flags.module_gc_base" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<exports>
 			<group name="all"/>

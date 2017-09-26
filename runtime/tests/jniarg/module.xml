@@ -33,6 +33,7 @@
 
 	<artifact type="shared" name="jniargtests" appendrelease="false">
 		<include-if condition="spec.flags.module_jniargtests" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="requiresPrimitiveTable"/>
 			<option name="prototypeHeaderFileNames" data="j9protos.h jniargtests.h"/>

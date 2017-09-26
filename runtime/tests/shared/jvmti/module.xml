@@ -30,6 +30,7 @@
 
 	<artifact type="shared" name="SharedClassesNativeAgent" appendrelease="false">
 		<include-if condition="spec.flags.module_shared_test"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>util j2se</phase>
 		<exports>
 			<group name="all"/> 

@@ -53,6 +53,7 @@
 	</artifact>
 
 	<artifact type="shared" name="management_ext" loadgroup="" appendrelease="false">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="management extensions" />
 		</options>

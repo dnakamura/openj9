@@ -30,6 +30,7 @@
 
 	<artifact type="shared" name="thrtrace" appendrelease="false">
 		<include-if condition="spec.flags.module_thrtrace" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<exports>
 			<group name="all"/>

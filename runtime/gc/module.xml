@@ -31,6 +31,7 @@
 
 	<artifact type="shared" name="j9gc" bundle="j9vmall" loadgroup="">
 		<include-if condition="spec.flags.module_gc" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isRequired"/>
 			<option name="requiresPrimitiveTable"/>

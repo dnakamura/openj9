@@ -24,6 +24,7 @@
 
 <module>
 	<artifact type="executable" name="propstest" >
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 		</options>

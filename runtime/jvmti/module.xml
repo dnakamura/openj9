@@ -29,6 +29,7 @@
 
 	<artifact type="shared" name="j9jvmti" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_jvmti" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="requiresLockFixups386"/>
 			<option name="dllDescription" data="JVMTI"/>

@@ -26,6 +26,7 @@
 	</exports>
 
 	<artifact type="shared" name="j9vmchk" bundle="jvm" loadgroup="tools">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="prototypeHeaderFileNames" data="vmcheck.h"/>
 			<option name="dllDescription" data="CHECK_VM"/>

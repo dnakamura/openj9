@@ -25,6 +25,7 @@
 <module>
 	<artifact type="executable" name="servicetest">
 		<include-if condition="spec.flags.module_shared_servicetest" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 		</options>

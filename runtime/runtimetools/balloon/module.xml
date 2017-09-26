@@ -30,6 +30,7 @@
 	</exports>
 
 	<artifact type="shared" name="balloon" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="TOOLS_BALLOON"/>
 			<option name="isCPlusPlus">

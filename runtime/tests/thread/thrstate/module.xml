@@ -36,6 +36,7 @@
 
 	<artifact type="executable" name="thrstatetest" >
 		<include-if condition="spec.flags.module_thread" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 		</options>

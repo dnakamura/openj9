@@ -43,6 +43,7 @@
 
 	<artifact type="shared" name="j9vm" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_vm" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus"/>
 			<option name="requiresLockFixups386"/>

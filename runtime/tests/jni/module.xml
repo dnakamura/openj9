@@ -362,6 +362,7 @@
 
 	<artifact type="shared" name="j9ben" appendrelease="false">
 		<include-if condition="spec.flags.module_jnitest" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="requiresPrimitiveTable"/>
 			<option name="prototypeHeaderFileNames" data="j9protos.h jnitest_internal.h"/>

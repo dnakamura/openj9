@@ -6,6 +6,7 @@
 	</exports>
 
 	<artifact type="shared" name="ffi" bundle="jvm" loadgroup="">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isRequired" />
 			<option name="prototypeHeaderFileNames" data="ffi.h" />

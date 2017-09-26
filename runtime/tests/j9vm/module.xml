@@ -57,6 +57,7 @@
 
 	<artifact type="shared" name="j9vmtest" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vmtest" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="requiresPrimitiveTable"/>
 			<option name="dumpGenericProtosForPrimTable"/>

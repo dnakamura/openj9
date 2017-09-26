@@ -25,6 +25,7 @@
 <module xmlns:xi="http://www.w3.org/2001/XInclude">
 
 	<artifact type="executable" name="gc_rwlocktest">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>util</phase>
 		<includes>
 			<include path="j9include"/>

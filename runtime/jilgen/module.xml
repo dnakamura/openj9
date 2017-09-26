@@ -23,6 +23,7 @@
 <module>
 
 	<artifact type="executable" name="constgen">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus">
 				<exclude-if condition="spec.linux_ppc.*"/>

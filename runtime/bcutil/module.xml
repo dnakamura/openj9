@@ -73,6 +73,7 @@
 
 	<artifact type="static" name="j9dyn" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.module_bcutil" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isRequired"/>
 			<option name="isCPlusPlus"/>

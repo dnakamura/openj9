@@ -32,6 +32,7 @@
 
 	<artifact type="shared" name="bcvwhite" appendrelease="false">
 		<include-if condition="spec.flags.module_bcverify" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="Verifier Test Natives"/>
 		</options>

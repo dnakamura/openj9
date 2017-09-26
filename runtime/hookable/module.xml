@@ -26,6 +26,7 @@
         
 	<artifact type="shared" name="j9hookable" loadgroup="">
 		<include-if condition="spec.flags.module_hookable" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 		<dependencies>
 			<dependency name="j9utilcore"/>

@@ -25,6 +25,7 @@
 <module>
 	<artifact type="executable" name="vmtest" >
 		<include-if condition="spec.flags.module_porttest" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 		</options>

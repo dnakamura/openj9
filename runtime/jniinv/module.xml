@@ -24,6 +24,7 @@
 
 	<artifact type="executable" name="invtest" >
 		<include-if condition="spec.flags.module_jniinv" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dumpMasterPrimitiveTable"/>
 		</options>

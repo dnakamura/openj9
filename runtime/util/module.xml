@@ -23,6 +23,7 @@
 <module>
 	<artifact type="static" name="j9util">
 		<include-if condition="spec.flags.module_util" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core</phase>
 		<dependencies>
 			<dependency name="run_constgen"/>

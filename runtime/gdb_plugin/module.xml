@@ -33,6 +33,7 @@
 
 	<artifact type="shared" name="gdb_j9">
 		<include-if condition="spec.flags.module_gdb_plugin" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus"/>
 			<option name="dumpMasterPrimitiveTable"/>
