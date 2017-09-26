@@ -55,7 +55,7 @@ endif
 
 ifdef ENABLE_CMAKE
 	TRACEGEN   := build/omr/tools/tracegen/tracegen
-	TRACEMERGE := build/omr/tools/tracemerge
+	TRACEMERGE := build/omr/tools/tracemerge/tracemerge
 	HOOKGEN    := build/omr/tools/hookgen/hookgen
 else
 	TRACEGEN   := ./tracegen
