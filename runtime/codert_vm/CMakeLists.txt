@@ -20,6 +20,7 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 ################################################################################
 
+add_tracegen(j9codertvm.tdf)
 add_library(j9codert_vm STATIC 
 	cache.c
 	cnathelp.cpp
@@ -32,18 +33,14 @@ add_library(j9codert_vm STATIC
 	jsr292.c
 	jswalk.c
 	thunkcrt.c
-	ut_j9codertvm.c
+	${CMAKE_CURRENT_BINARY_DIR}/ut_j9codertvm.c
 )
 
 target_include_directories(j9codert_vm
     PRIVATE
     .
-    ${PROJECT_SOURCE_DIR}/oti
-    ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/gc_include
-    ${PROJECT_SOURCE_DIR}/omr/include_core
     ${PROJECT_SOURCE_DIR}/omr/gc/include
-    ${PROJECT_SOURCE_DIR}/nls
     ${PROJECT_SOURCE_DIR}/tr.source/trj9/runtime/
 )
 
@@ -76,4 +73,8 @@ if(J9VM_JIT_RUNTIME_INSTRUMENTATION)
   target_sources(j9codert_vm PRIVATE runtimeInstrumentation.c)
 endif()
 
-target_link_libraries(j9codert_vm PRIVATE j9vm_compiler_defines)
+target_link_libraries(j9codert_vm
+	PRIVATE
+		j9vm_interface
+		j9vm_compiler_defines
+)
