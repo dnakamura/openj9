@@ -43,7 +43,12 @@
 			<object name="main"/>
 		</objects>
 		<libraries>
-			<library name="jsig"/>
+			<library name="jsig">
+				<exclude-if condition="spec.flags.build_cmake"/>
+			</library>
+			<library name="jsig" type="external">
+				<include-if condition="spec.flags.build_cmake"/>
+			</library>
 		</libraries>
 	</artifact>
 </module>
