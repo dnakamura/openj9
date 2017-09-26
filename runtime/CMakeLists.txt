@@ -86,6 +86,7 @@ target_include_directories(j9vm_interface
 		oti
 		include
 		omr/include_core
+		${CMAKE_CURRENT_BINARY_DIR}/omr
 		nls
 )
 
