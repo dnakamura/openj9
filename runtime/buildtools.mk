@@ -53,6 +53,16 @@ else
 	JAVA := $(if $(J9_ROOT),java8,$(DEV_TOOLS)\ibm-jdk-1.8.0\bin\java)
 endif
 
+ifdef ENABLE_CMAKE
+	TRACEGEN := build/omr/tools/tracegen/tracegen
+	HOOKGEN  := build/omr/tools/hookgen/hookgen
+else
+	TRACEGEN   := ./tracegen
+	TRACEMERGE := ./tracemerge
+	HOOKGEN    := ./hookgen
+endif
+
+
 default : all
 tools : copya2e configure tracing nls hooktool constantpool
 all : tools ddr
@@ -77,11 +87,15 @@ buildtools :
 buildtrace : configure
 ifneq ($(CALLED_BY_SOURCE_ZIP),yes)
 	+ $(MAKE) -C omr -f GNUmakefile ENABLE_TRACEGEN=yes tools/tracegen tools/tracemerge
+else
+	+ $(MAKE) -C build tracegen tracemerge
 endif
 
 buildhook : configure
 ifneq ($(CALLED_BY_SOURCE_ZIP),yes)
 	+ $(MAKE) -C omr -f GNUmakefile tools/hookgen
+else
+	+ $(MAKE) -C build hookgen
 endif
 
 # recursively find files in directory $1 matching the pattern $2
@@ -92,16 +106,14 @@ findAllFiles = \
 TRACEGEN_DEFINITION_TDF_FILES := $(strip $(call findAllFiles,.,*.tdf))
 TRACEGEN_DEFINITION_SENTINELS := $(patsubst %.tdf,%.tracesentinel,$(TRACEGEN_DEFINITION_TDF_FILES))
 %.tracesentinel : %.tdf
-	./tracegen -treatWarningAsError -generatecfiles -force -threshold $(TRC_THRESHOLD) -file $<
+	$(TRACEGEN) -treatWarningAsError -generatecfiles -force -threshold $(TRC_THRESHOLD) -file $<
 	touch $@
 
 # process TDF files to generate RAS tracing headers and C files
 trace_merge : buildtrace
-ifndef ENABLE_CMAKE
 	@$(MAKE) -f buildtools.mk $(TRACEGEN_DEFINITION_SENTINELS)
-	./tracemerge -majorversion 5 -minorversion 1 -root .
+	$(TRACEMERGE) -majorversion 5 -minorversion 1 -root .
 	touch $@
-endif
 
 tracing : trace_merge
 
@@ -116,13 +128,10 @@ HOOK_DEFINITION_FILES := $(strip $(call findAllFiles,.,*.hdf))
 HOOK_DEFINITION_SENTINELS := $(patsubst %.hdf,%.hooksentinel, $(HOOK_DEFINITION_FILES))
 # process HDF files to generate hook header files
 %.hooksentinel: %.hdf
-	./hookgen $<
-	touch $@
+	$(HOOKGEN) $<
 
 hooktool : buildhook
-ifndef ENABLE_CMAKE
 	@$(MAKE) -f buildtools.mk $(HOOK_DEFINITION_SENTINELS)
-endif
 
 # run configure to generate makefile
 OMRGLUE = ../gc_glue_java
