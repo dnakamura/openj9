@@ -54,7 +54,7 @@
 			</include>
 			<include path="../j9vm">
 				<include-if condition="spec.flags.build_cmake"/>
-			</inlude>
+			</include>
 			<include path="$(OMRPORT_SRCDIR)zos390" type="relativepath">
 				<include-if condition="spec.zos_390.*"/>
 			</include>
@@ -108,7 +108,7 @@
 			</include>
 			<include path="../j9vm">
 				<include-if condition="spec.flags.build_cmake"/>
-			</inlude>
+			</include>
 			<include path="$(OMRPORT_SRCDIR)zos390" type="relativepath">
 				<include-if condition="spec.zos_390.*"/>
 			</include>
@@ -163,7 +163,7 @@
 			</include>
 			<include path="../j9vm">
 				<include-if condition="spec.flags.build_cmake"/>
-			</inlude>
+			</include>
 			<include path="$(OMRPORT_SRCDIR)zos390" type="relativepath">
 				<include-if condition="spec.zos_390.*"/>
 			</include>
