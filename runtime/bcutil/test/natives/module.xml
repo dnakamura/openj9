@@ -28,7 +28,7 @@
 
 	<artifact type="shared" name="bcuwhite" appendrelease="false">
 		<include-if condition="spec.flags.module_bcutil" />
-		<exclude-if condition-"spec.flags.build_cmake" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus"/>
 			<option name="dllDescription" data="bcutil Test Natives"/>
