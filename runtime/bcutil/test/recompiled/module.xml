@@ -52,6 +52,7 @@
 	</objects>
 
 	<artifact type="static" name="j9dyn_generic_test">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus"/>
 		</options>
