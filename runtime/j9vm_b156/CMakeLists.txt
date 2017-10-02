@@ -24,6 +24,7 @@
 #TODO not ideal, but cmake doesnt like sources generated in a different directory
 #add_tracegen(../j9vm/j9scar.tdf)
 
+add_tracegen(../j9vm/j9scar.tdf)
 add_library(jvm_b156 SHARED ut_j9scar.c)
 target_include_directories(jvm_b156 PRIVATE ${j9vm_SOURCE_DIR}/j9vm)
 target_link_libraries(jvm_b156
