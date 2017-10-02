@@ -24,6 +24,7 @@
         
 	<artifact type="executable" name="dyntest" >
 		<include-if condition="spec.flags.module_porttest" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="isCPlusPlus">
 				<include-if condition="spec.zos.*"/>
