@@ -33,9 +33,22 @@ add_executable(testjep178_static
     static_libraries.c
     testjep178.c
 )
-target_link_libraries(testjep178_static PRIVATE j9vm_interface)
+#TODO platform specific stuff
+target_link_libraries(testjep178_static
+    PRIVATE
+        j9vm_interface
+
+        #TODO platform specific
+        dl
+)
 
 add_executable(testjep178_dynamic
     testjep178.c
 )
-target_link_libraries(testjep178_dynamic PRIVATE j9vm_interface)
+target_link_libraries(testjep178_dynamic
+    PRIVATE
+        j9vm_interface
+
+        #TODO platform specific
+        dl
+)

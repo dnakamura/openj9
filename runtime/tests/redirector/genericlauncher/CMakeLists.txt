@@ -25,4 +25,7 @@ add_executable(glaunch genlauncher.c)
 target_link_libraries(glaunch
     PRIVATE
         j9vm_interface
+
+        #TODO platform specific
+        dl
 )
