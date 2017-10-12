@@ -20,7 +20,7 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 ################################################################################
 
-#TODO scope b165
+set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/../ut_j9jcl.c PROPERTIES GENERATED TRUE)
 add_library(jclse9_156 SHARED
 	../j9vmconstantpool_se9.c
 )
@@ -40,7 +40,7 @@ target_link_libraries(jclse9_156
 		j9vm_interface
 		j9vm_gc_includes
 		j9vm_jcl_includes
-		j9vm_jcl_tracegen
+		j9vm_jcl_trace
 		omrsig
 
 		j9vm_jcl_se6_vm-side_lifecycle
