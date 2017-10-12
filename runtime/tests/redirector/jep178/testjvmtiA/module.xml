@@ -31,6 +31,7 @@
 	</exports>
 	<artifact type="shared" name="testjvmtiA" appendrelease="false">
 		<include-if condition="spec.flags.build_j2se" />
+        <exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 		<exports>
 			<group name="all"/>

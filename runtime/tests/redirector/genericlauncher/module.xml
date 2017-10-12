@@ -26,6 +26,7 @@
         
 	<artifact type="executable" name="glaunch">
 		<include-if condition="spec.flags.build_j2se" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="doesNotRequireCMAIN"/>
 		</options>

@@ -26,6 +26,7 @@
 
 	<artifact type="executable" name="testjep178_static">
 		<include-if condition="spec.flags.build_j2se" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="doesNotRequireCMAIN"/>
 		</options>
@@ -63,6 +64,7 @@
 	</artifact>
 	<artifact type="executable" name="testjep178_dynamic">
 		<include-if condition="spec.flags.build_j2se" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="doesNotRequireCMAIN"/>
 		</options>
