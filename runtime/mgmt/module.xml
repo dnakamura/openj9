@@ -27,6 +27,7 @@
 	</exports>
 
 	<artifact type="shared" name="management" loadgroup="" appendrelease="false">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="management" />
 		</options>
