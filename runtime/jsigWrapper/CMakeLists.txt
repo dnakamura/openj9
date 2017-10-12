@@ -33,6 +33,8 @@ target_link_libraries(jsig
         dl
 )
 
+target_include_directories(jsig PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 install(
 	TARGETS jsig
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}
