@@ -34,6 +34,7 @@
 
 	<artifact type="shared" name="jvm_b150" scope="redirector" loadgroup="top" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vm"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<!-- Need this for compatibility with older UMA versions in ifix streams -->
 			<option name="linuxVersionName" data ="JVM_2.3"/>
@@ -80,6 +81,7 @@
 		and last the makefile target of the artifact jvm -->
 	<artifact type="shared" name="jvm_b150_clean" scope="redirector" loadgroup="top" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vm"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 		<commands>
 			<command line="$(MAKE) -f redirector_jvm.mk clean" type="all"/>
@@ -88,6 +90,7 @@
 
 	<artifact type="shared" name="jvm_b156" scope="redirector" loadgroup="top" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vm"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<!-- Need this for compatibility with older UMA versions in ifix streams -->
 			<option name="linuxVersionName" data ="JVM_2.3"/>
@@ -134,6 +137,7 @@
 		and last the makefile target of the artifact jvm -->
 	<artifact type="shared" name="jvm_b156_clean" scope="redirector" loadgroup="top" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vm"/>
+		<exclude-if condition="spec.flags.build_cmake" />
 		<phase>core quick j2se</phase>
 		<commands>
 			<command line="$(MAKE) -f redirector_jvm.mk clean" type="all"/>
@@ -143,6 +147,7 @@
 	<!-- This artifact must be last because the ones above do a 'clean' after they run, removing libjvm.so. -->  
 	<artifact type="shared" name="jvm" scope="redirector" loadgroup="top" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.module_j9vm" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<!-- Need this for compatibility with older UMA versions in ifix streams -->
 			<option name="linuxVersionName" data ="JVM_2.3" />
