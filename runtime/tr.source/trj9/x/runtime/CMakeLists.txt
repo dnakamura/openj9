@@ -22,11 +22,9 @@
 
 j9jit_files(
 	${OMR_ROOT}/compiler/x/runtime/VirtualGuardRuntime.cpp
-	x/runtime/IA32sse.c 
 	x/runtime/Recomp.cpp
 	x/runtime/X86ArrayTranslate.asm 
 	x/runtime/X86Codert.asm 
-	x/runtime/X86CPUID.asm 
 	#x/runtime/X86Crypto.asm 
 	x/runtime/X86EncodeUTF16.asm 
 	x/runtime/X86LockReservation.asm 

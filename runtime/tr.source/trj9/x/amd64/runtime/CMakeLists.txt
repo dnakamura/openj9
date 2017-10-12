@@ -24,6 +24,5 @@ j9jit_files(
 	x/amd64/runtime/AMD64ArrayCopy.asm 
 	x/amd64/runtime/AMD64ArrayTranslate.asm 
 	x/amd64/runtime/AMD64CompressString.asm 
-	x/amd64/runtime/AMD64cpuid.asm 
 	x/amd64/runtime/AMD64Recompilation.asm
 )

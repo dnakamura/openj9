@@ -21,7 +21,6 @@
 ################################################################################
 
 j9jit_files(
-	x/i386/runtime/IA32cpuid.asm
 	x/i386/runtime/IA32Recompilation.asm
 	x/i386/runtime/J9IA32ArrayCopy.asm
 	x/i386/runtime/J9IA32ArrayTranslate.asm
