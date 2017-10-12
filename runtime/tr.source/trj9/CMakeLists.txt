@@ -42,7 +42,8 @@ get_filename_component(OMR_ROOT ${OMR_ROOT} ABSOLUTE)
 
 set(CMAKE_MODULE_PATH "${OMR_ROOT}/cmake/modules" ${CMAKE_MODULE_PATH})
 
-include(${OMR_ROOT}/cmake/compiler_support.cmake) 
+#include(${OMR_ROOT}/cmake/compiler_support.cmake) 
+include(OmrCompilerSupport)
 
 # Override masm2gas with J9JIT version until we've 
 # resolved the divergence.

@@ -24,15 +24,14 @@
 #TODO not ideal, but cmake doesnt like sources generated in a different directory
 #add_tracegen(../j9vm/j9scar.tdf)
 
-add_tracegen(../j9vm/j9scar.tdf)
-add_library(jvm_b156 SHARED ut_j9scar.c)
+add_library(jvm_b156 SHARED ../j9vm/ut_j9scar.c)
 target_include_directories(jvm_b156 PRIVATE ${j9vm_SOURCE_DIR}/j9vm)
 target_link_libraries(jvm_b156
 	PRIVATE
 		jvm_common
 		j9util_b156
 )
-add_dependencies(jvm_b156 omrgc_hookgen)
+add_dependencies(jvm_b156 omrgc_hookgen trc_j9scar)
 target_compile_definitions(jvm_b156
 	PRIVATE
 		-DJ9VM_JAVA9_BUILD=156

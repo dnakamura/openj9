@@ -20,11 +20,9 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 ################################################################################
 
-add_tracegen(../j9jcl.tdf)
 #TODO scope b165
 add_library(jclse9_ SHARED
 	../j9vmconstantpool_se9_before_b165.c
-	ut_j9jcl.c
 )
 target_include_directories(jclse9_
 	PRIVATE
@@ -42,6 +40,7 @@ target_link_libraries(jclse9_
 		j9vm_interface
 		j9vm_gc_includes
 		j9vm_jcl_includes
+		j9vm_jcl_tracegen
 		omrsig
 
 		j9vm_jcl_se6_vm-side_lifecycle

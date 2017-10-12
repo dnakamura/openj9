@@ -20,14 +20,16 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 ################################################################################
 
-add_tracegen(../j9vm/j9scar.tdf)
-add_library(jvm_b150 SHARED ut_j9scar.c)
+add_library(jvm_b150 SHARED ../j9vm/ut_j9scar.c)
 target_link_libraries(jvm_b150
 	PRIVATE
 		jvm_common
 		j9util
 )
-add_dependencies(jvm_b150 omrgc_hookgen)
+add_dependencies(jvm_b150
+	omrgc_hookgen
+	trc_j9scar	
+)
 target_compile_definitions(jvm_b150
 	PRIVATE
 		-DJ9VM_JAVA9_BUILD=150

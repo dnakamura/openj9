@@ -32,6 +32,18 @@ target_include_directories(j9vm_jcl_includes
 		${j9vm_SOURCE_DIR}/shared_common/include
 )
 
+add_tracegen(j9jcl.tdf)
+add_library(j9vm_jcl_trace INTERFACE)
+target_sources(j9vm_jcl_trace
+	INTERFACE
+		${CMAKE_CURRENT_BINARY_DIR}/ut_j9jcl.c
+)
+target_include_directories(j9vm_jcl_trace
+	INTERFACE
+		${CMAKE_CURRENT_BINARY_DIR}
+)
+add_dependencies(j9vm_jcl_trace trc_j9jcl)
+
 add_library(j9vm_jcl_se6_vm-side_lifecycle INTERFACE)
 target_sources(j9vm_jcl_se6_vm-side_lifecycle
 	INTERFACE
