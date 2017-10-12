@@ -27,4 +27,6 @@ target_link_libraries(jsigjnitest
         j9vm_interface
 
         jsig
+        #TODO platform specific
+        dl
 )
