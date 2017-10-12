@@ -25,6 +25,7 @@
 <module>
 	
 	<artifact type="executable" name="jsigjnitest">
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="doesNotRequireCMAIN"/>
 		</options>
