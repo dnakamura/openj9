@@ -46,6 +46,8 @@ endif()
 enable_language(ASM)
 #add_definitions(-pthread)
 SET(CMAKE_INSTALL_RPATH "\$ORIGIN")
+set(OMR_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}" CACHE STRING "")
+set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}" CACHE STRING "" FORCE)
 
 set(OMR_GLUE_TARGET "j9vm_glue" CACHE STRING "The glue target")
 set(OMR_GC_GLUE_TARGET "j9vm_gc_glue" CACHE STRING "")
