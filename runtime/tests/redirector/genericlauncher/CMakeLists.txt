@@ -20,9 +20,7 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 ################################################################################
 
-add_executable(glaunch
-    genericlauncher.c
-)
+add_executable(glaunch genlauncher.c)
 
 target_link_libraries(glaunch
     PRIVATE
