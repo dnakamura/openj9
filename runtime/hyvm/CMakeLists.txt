@@ -32,7 +32,7 @@ target_link_libraries(harmony_jvm
         omrsig
 )
 
-target_properties(hyarmony_jvm PROPERTIES NAME "jvm")
+set_target_properties(hyarmony_jvm PROPERTIES NAME "jvm")
 
 install(
 	TARGETS harmony_jvm
