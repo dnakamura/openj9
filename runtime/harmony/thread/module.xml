@@ -36,7 +36,7 @@
 
 	<artifact type="shared" name="hythr" bundle="jvm" loadgroup="" appendrelease="false">
 		<include-if condition="spec.flags.opt_harmony" />
-		<!--<exclude-if condition="spec.flags.build_cmake" />-->
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="Harmony Thread API"/>
 			<option name="linuxVersionName" data ="HYTHR_0.2" />

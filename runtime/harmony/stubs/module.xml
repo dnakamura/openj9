@@ -52,7 +52,7 @@
 
 	<artifact type="shared" name="hyprtshim" bundle="jvm" loadgroup="">
 		<include-if condition="spec.flags.opt_harmony" />
-		<!--<exclude-if condition="spec.flags.build_cmake" />-->
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="dllDescription" data="Harmony Port Library Shim"/>
 			<option name="prototypeHeaderFileNames" data="hyport_shim.h"/>
