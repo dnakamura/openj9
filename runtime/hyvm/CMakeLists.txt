@@ -27,4 +27,14 @@ add_library(harmony_jvm SHARED
     harmony_vm.c
 )
 
+target_link_libraries(harmony_jvm
+    PRIVATE
+        omrsig
+)
+
 target_properties(hyarmony_jvm PROPERTIES NAME "jvm")
+
+install(
+	TARGETS harmony_jvm
+	LIBRARY DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}
+)
