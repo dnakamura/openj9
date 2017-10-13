@@ -26,6 +26,7 @@
 
 	<artifact type="shared" name="hyprt" loadgroup="" buildlocal="true" appendrelease="false">
 		<include-if condition="spec.flags.opt_harmony" />
+		<exclude-if condition="spec.flags.build_cmake" />
 		<options>
 			<option name="linuxVersionName" data ="HYPRT_0.2" />
 			<option name="dllDescription" data="Harmony Port Library"/>
