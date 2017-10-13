@@ -26,10 +26,18 @@ set(CMAKE_SHARED_LIBRARY_SUFFIX ${J9VM_OLD_SHARED_SUFFIX})
 add_library(harmony_jvm SHARED
     harmony_vm.c
 )
+target_include_directories(harmony_jvm
+    PRIVATE
+        ../harmony/include
+)
 
 target_link_libraries(harmony_jvm
     PRIVATE
+        j9vm_interface
+
         omrsig
+        hyprt
+        hyprtshim
 )
 
 set_target_properties(harmony_jvm PROPERTIES LIBRARY_OUTPUT_NAME "jvm")
