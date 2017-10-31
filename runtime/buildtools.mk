@@ -187,7 +187,11 @@ ifdef ENABLE_CMAKE
 endif
 uma : buildtools copya2e
 	@echo J9VM version: $(J9VM_SHA)
+ifdef ENABLE_CMAKE
+	@echo Skipping uma for cmake build
+else
 	$(UMA_TOOL) $(UMA_OPTIONS)
+endif
 
 # process constant pool definition file to generate jcl constant pool definitions and header file
 CONSTANTPOOL_TOOL    := $(JAVA) -cp "sourcetools/lib/om.jar$(PATHSEP)sourcetools/lib/j9vmcp.jar" com.ibm.oti.VMCPTool.Main
