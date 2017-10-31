@@ -58,6 +58,18 @@ set(OMR_UTIL_GLUE_TARGET "j9vm_util_glue" CACHE STRING "")
 include(cmake/platform.cmake)
 include(cmake/optional_compile.cmake)
 
+#TODO most of these need to be done better
+set(J9VM_BUILD_TAG j9vm_build_tag)
+set(OMR_BUILD_TAG omr_build_tag)
+set(JIT_BUILD_TAG jit_build_tag)
+set(J9VM_BUILD_ID 0000)
+set(J9VM_UNIQUE_BUILD_ID 66666)
+string(TIMESTAMP J9VM_CURRENT_YEAR "%Y")
+string(TIMESTAMP J9VM_BUILD_DATE "%Y%m%d")
+
+configure_file(include/j9cfg.h.in j9cfg.h)
+configure_file(include/j9lib.h.in j9lib.h)
+configure_file(include/j9version.h.in j9version.h)
 
 #TODO should probably rename to j9vm_jit_defines for less ambiguity
 add_library(j9vm_compiler_defines INTERFACE)
