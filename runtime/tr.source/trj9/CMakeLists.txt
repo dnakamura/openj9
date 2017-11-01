@@ -34,8 +34,7 @@ get_filename_component(J9SRC ${J9SRC} ABSOLUTE)
 
 # The Makefiles specified the OMR in the VM tree, and this does the same
 # does the same. 
-set(OMR_ROOT ../../omr  ) 
-
+set(OMR_ROOT ${omr_SOURCE_DIR})
 # Absolutize the OMR_ROOT, which is required
 # for MASM2GAS. 
 get_filename_component(OMR_ROOT ${OMR_ROOT} ABSOLUTE)
@@ -126,8 +125,8 @@ set(TARGET_DEFINES
 # the inlcudes from the SDK
 set(J9_INCLUDES
 	# From jitinclude.mk 
-	${J9SRC}/omr/thread
-	${J9SRC}/omr/gc/include 
+	${omr_SOURCE_DIR}/thread
+	${omr_SOURCE_DIR}/gc/include
 	# endjitinclude.mk
 	../ # Frustratingly there are some #include "trj9/frob/baz.hpp" refs  which require this. 
 	${J9SRC}/codert_vm 
@@ -138,6 +137,8 @@ set(J9_INCLUDES
 	${J9SRC}/oti
 	${J9SRC}/include
 	${J9SRC}/util
+	${j9vm_BINARY_DIR}
+	${omr_BINARY_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}/../../omr
 )
 # Platform specific list of flags, derived directly from the 
@@ -193,7 +194,7 @@ create_omr_compiler_library(NAME j9jit
 							INCLUDES ${J9_INCLUDES}
 							FILTER ${REMOVED_OMR_FILES})
 
-
+add_dependencies(j9jit omrgc_hookgen)
 
 target_link_libraries(j9jit PRIVATE
 	j9vm_interface

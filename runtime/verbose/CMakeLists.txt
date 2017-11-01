@@ -50,8 +50,8 @@ target_include_directories(j9vrb
 		../tr.source/ibm/runtime
 		../tr.source/codegen
 		../tr.source/ibm/codegen
-		../omr/compiler/codegen
-		../omr/compiler
+		${omr_SOURCE_DIR}/compiler/codegen
+		${omr_SOURCE_DIR}/compiler
 		../tr.source/base
 		../tr.source/ibm/base
 		../tr.source

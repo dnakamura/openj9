@@ -181,8 +181,8 @@ endif()
 
 target_include_directories(j9vm
 	PRIVATE
-		../omr/include_core
-		../omr/gc/include
+		${omr_SOURCE_DIR}/include_core
+		${omr_SOURCE_DIR}/gc/include
 		../gc_include
 		../nls
 		../util
