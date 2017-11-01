@@ -37,7 +37,6 @@ changequote(`[',`]')dnl
 #endif
 
 include(helpers.m4)
-include(join.m4)
 
 define([_IF],
 [#if $1

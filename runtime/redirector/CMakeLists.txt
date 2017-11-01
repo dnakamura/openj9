@@ -28,7 +28,7 @@ include_directories(../j9vm)
 
 add_custom_command(OUTPUT generated.c
 	DEPENDS  ${CMAKE_CURRENT_SOURCE_DIR}/../oti/helpers.m4 generated.c.m4
-	COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/generated.c.m4 > generated.c
+	COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti -I ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated.c.m4 > generated.c
 )
 
 add_library(j9vm_redirector_common INTERFACE)
