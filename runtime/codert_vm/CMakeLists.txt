@@ -40,7 +40,7 @@ target_include_directories(j9codert_vm
     PRIVATE
     .
     ${PROJECT_SOURCE_DIR}/gc_include
-    ${PROJECT_SOURCE_DIR}/omr/gc/include
+    ${omr_SOURCE_DIR}/gc/include
     ${PROJECT_SOURCE_DIR}/tr.source/trj9/runtime/
 )
 
