@@ -189,6 +189,8 @@ uma : buildtools copya2e
 	@echo J9VM version: $(J9VM_SHA)
 ifdef ENABLE_CMAKE
 	@echo Skipping uma for cmake build
+	# Dump out a dummy file so the sed script will work
+	echo "gcc-4.6" > makelib/mkconstants.mk
 else
 	$(UMA_TOOL) $(UMA_OPTIONS)
 endif
