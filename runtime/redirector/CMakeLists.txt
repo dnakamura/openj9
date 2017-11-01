@@ -26,10 +26,15 @@ set(CMAKE_SHARED_LIBRARY_SUFFIX ${J9VM_OLD_SHARED_SUFFIX})
 #TODO this still relies on UMA to generate the source files
 include_directories(../j9vm)
 
+add_custom_command(OUTPUT generated.c
+	DEPENDS  ${CMAKE_CURRENT_SOURCE_DIR}/../oti/helpers.m4 generated.c.m4
+	COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/generated.c.m4 > generated.c
+)
+
 add_library(j9vm_redirector_common INTERFACE)
 target_sources(j9vm_redirector_common 
 	INTERFACE
-		${CMAKE_CURRENT_SOURCE_DIR}/generated.c
+		${CMAKE_CURRENT_BINARY_DIR}/generated.c
 		${CMAKE_CURRENT_SOURCE_DIR}/redirector.c
 )
 add_library(jvm_b150_redirect SHARED
