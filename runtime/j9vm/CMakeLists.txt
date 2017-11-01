@@ -23,10 +23,19 @@
 # We dont want to suffix vm version to shared libs
 set(CMAKE_SHARED_LIBRARY_SUFFIX ${J9VM_OLD_SHARED_SUFFIX})
 
+#TODO this should be output in the binary dir, not the source dir
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/generated.h
+	DEPENDS  ${CMAKE_CURRENT_SOURCE_DIR}/../oti/helpers.m4  ${CMAKE_CURRENT_SOURCE_DIR}/../redirector/forwarders.m4 generated.h.m4
+	COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti -I ${CMAKE_CURRENT_SOURCE_DIR}/../redirector ${CMAKE_CURRENT_SOURCE_DIR}/generated.h.m4 > generated.h
+	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+
 add_tracegen(j9scar.tdf)
 
 add_library(jvm_common INTERFACE)
 target_sources(jvm_common INTERFACE
+	${CMAKE_CURRENT_SOURCE_DIR}/generated.h
 	${CMAKE_CURRENT_SOURCE_DIR}/j7verify.c
 	${CMAKE_CURRENT_SOURCE_DIR}/j7vmi.c
 	${CMAKE_CURRENT_SOURCE_DIR}/j8vmi.c
