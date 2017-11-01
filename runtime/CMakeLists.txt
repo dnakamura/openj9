@@ -32,6 +32,7 @@ set(J9VM_VERSION ${J9VM_VERSION_MAJOR}.${J9VM_VERSION_MINOR}.${J9VM_VERSION_PATC
 #hack to suppress omr warnings as errors
 set(OMR_WARNINGS_AS_ERRORS OFF)
 
+set(J9VM_OMR_DIR "omr" CACHE STRING "")
 set(J9VM_JAVA_VERSION "9" CACHE STRING "Version of Java to build")
 set_property(CACHE J9VM_JAVA_VERSION PROPERTY STRINGS "8" "9")
 
@@ -131,7 +132,7 @@ set(OMR_THREAD_LIB "j9thr" CACHE STRING "Name of the thread library to link agai
 set(OMR_TRACE_LIB "j9trc" CACHE STRING "Name of the trace library to link against")
 
 add_subdirectory(gc_glue_java)
-add_subdirectory(omr)
+add_subdirectory("$J9VM_OMR_DIR}" omr)
 
 set_target_properties(omrsig PROPERTIES LINKER_LANGUAGE C)
 
