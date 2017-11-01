@@ -23,6 +23,8 @@
 #not needed atm, since uma is still generating things in tree
 #TODO not ideal, but cmake doesnt like sources generated in a different directory
 
+set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/../j9vm/generated.h PROPERTIES GENERATED ON)
+
 set(CMAKE_SHARED_LIBRARY_SUFFIX ${J9VM_OLD_SHARED_SUFFIX})
 add_library(jvm_b156 SHARED ../j9vm/ut_j9scar.c)
 target_include_directories(jvm_b156 PRIVATE ${j9vm_SOURCE_DIR}/j9vm)

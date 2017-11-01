@@ -20,6 +20,7 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0
 ################################################################################
 
+set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/../j9vm/generated.h PROPERTIES GENERATED ON)
 add_library(jvm_b150 SHARED ../j9vm/ut_j9scar.c)
 target_link_libraries(jvm_b150
 	PRIVATE
