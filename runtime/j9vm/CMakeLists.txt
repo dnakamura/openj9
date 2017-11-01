@@ -30,6 +30,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/generated.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+add_custom_target(jvm_generated DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/generated.h)
 
 add_tracegen(j9scar.tdf)
 
@@ -46,7 +47,7 @@ target_sources(jvm_common INTERFACE
 	#TODO this is gross
 	${CMAKE_CURRENT_SOURCE_DIR}/../hyvm/harmony_vm.c
 )
-
+add_dependencies(jvm_common jvm_generated)
 target_link_libraries(jvm_common
 	INTERFACE
 		j9vm_interface
