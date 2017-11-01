@@ -133,7 +133,7 @@ set(OMR_THREAD_LIB "j9thr" CACHE STRING "Name of the thread library to link agai
 set(OMR_TRACE_LIB "j9trc" CACHE STRING "Name of the trace library to link against")
 
 add_subdirectory(gc_glue_java)
-add_subdirectory("$J9VM_OMR_DIR}" omr)
+add_subdirectory("${J9VM_OMR_DIR}" omr)
 
 set_target_properties(omrsig PROPERTIES LINKER_LANGUAGE C)
 
