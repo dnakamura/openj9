@@ -92,9 +92,6 @@ endif() #TODO OTHER PLATFORMS
 include_directories( /usr/local/cuda-5.5/include )
 
 
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/lib")
-
 add_library(j9vm_interface INTERFACE)
 
 target_include_directories(j9vm_interface
