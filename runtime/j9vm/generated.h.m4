@@ -51,7 +51,7 @@ dnl #endif /* $1 */
 dnl        (1-name,2-cc, 3-decorate, 4-ret, 5-args..)
 define([_X],
 [$4 $2
-$1(join([, ],mshift(3,$@)));])
+$1(join([, ],mshift(4,$@)));])
 
 include([forwarders.m4])
 
