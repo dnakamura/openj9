@@ -101,9 +101,10 @@ target_include_directories(j9vm_interface
 	INTERFACE
 		oti
 		include
-		omr/include_core
+		${omr_SOURCE_DIR}/include_core
 		${CMAKE_CURRENT_BINARY_DIR}/omr
 		nls
+		${CMAKE_CURRENT_BINARY_DIR}
 )
 
 #TODO deprecated
@@ -133,6 +134,8 @@ set(OMR_THREAD_LIB "j9thr" CACHE STRING "Name of the thread library to link agai
 set(OMR_TRACE_LIB "j9trc" CACHE STRING "Name of the trace library to link against")
 
 add_subdirectory(gc_glue_java)
+#hack to add our binary dire to omr include path
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_subdirectory("${J9VM_OMR_DIR}" omr)
 
 set_target_properties(omrsig PROPERTIES LINKER_LANGUAGE C)
