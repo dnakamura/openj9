@@ -427,7 +427,7 @@ void print_verbose_stackUsage(J9VMThread* vmThread, UDATA stillRunning){
 	}
 
 	if (vmThread->threadObject) {
-		char* name = getOMRVMThreadName(vmThread->omrVMThread);
+		const char* name = getOMRVMThreadName(vmThread->omrVMThread);
 		PORT_ACCESS_FROM_JAVAVM(vm);
 		if(stillRunning == FALSE){
 			/* J9NLS_VERB_STACK_USAGE=Verbose stack: \"%.*s\" used %zd/%zd bytes on Java/C stacks */

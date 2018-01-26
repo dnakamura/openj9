@@ -54,7 +54,7 @@ bool
 MM_VerboseHandlerJava::getThreadName(char *buf, UDATA bufLen, OMR_VMThread *omrThread)
 {
 	PORT_ACCESS_FROM_JAVAVM(((J9VMThread*)omrThread->_language_vmthread)->javaVM);
-	char* threadName = getOMRVMThreadName(omrThread);
+	const char* threadName = getOMRVMThreadName(omrThread);
 	UDATA threadNameLength = strlen(threadName);
 	UDATA escapeConsumed = escapeXMLString(OMRPORT_FROM_J9PORT(PORTLIB), buf, bufLen, threadName, strlen(threadName));
 	bool consumedEntireString = (escapeConsumed >= threadNameLength);

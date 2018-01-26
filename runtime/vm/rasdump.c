@@ -250,7 +250,7 @@ gpThreadDump(struct J9JavaVM *vm, struct J9VMThread *currentThread)
 				j9object_t threadObject = currentThread->threadObject;
 				UDATA priority = vm->internalVMFunctions->getJavaThreadPriority(vm, currentThread);
 				UDATA isDaemon = J9VMJAVALANGTHREAD_ISDAEMON(currentThread, threadObject);
-				char* name = getOMRVMThreadName(currentThread->omrVMThread);
+				const char* name = getOMRVMThreadName(currentThread->omrVMThread);
 
 				j9tty_printf(
 					PORTLIB,

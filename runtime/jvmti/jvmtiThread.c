@@ -462,7 +462,7 @@ jvmtiGetThreadInfo(jvmtiEnv* env,
 					}
 				}
 			} else {
-				char * threadName = getOMRVMThreadName(targetThread->omrVMThread);
+				const char * threadName = getOMRVMThreadName(targetThread->omrVMThread);
 				size_t threadNameLen = (threadName == NULL) ? 1 : strlen(threadName) + 1;
 
 				/* Be sure to allocate at least one byte for the nul termination */

@@ -49,7 +49,7 @@ MM_VerboseEventGCStart::gcStartFormattedOutput(MM_VerboseOutputAgent *agent)
 	U_64 exclusiveAccessTimeMicros = omrtime_hires_delta(0, _gcStartData.exclusiveAccessTime, J9PORT_TIME_DELTA_IN_MICROSECONDS);
 	U_64 meanExclusiveAccessIdleTimeMicros = omrtime_hires_delta(0, _gcStartData.meanExclusiveAccessIdleTime, J9PORT_TIME_DELTA_IN_MICROSECONDS);
 
-	char* threadName = getOMRVMThreadName(_gcStartData.lastResponder);
+	const char* threadName = getOMRVMThreadName(_gcStartData.lastResponder);
 	char escapedThreadName[64];
 
 	escapeXMLString(OMRPORTLIB, escapedThreadName, sizeof(escapedThreadName), threadName, strlen(threadName));

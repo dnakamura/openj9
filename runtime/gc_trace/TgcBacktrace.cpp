@@ -37,7 +37,7 @@ static void
 printVMThreadInformation(J9VMThread *vmThread)
 {
 	MM_TgcExtensions *tgcExtensions = MM_TgcExtensions::getExtensions(vmThread);
-	char *threadName = getOMRVMThreadName(vmThread->omrVMThread);
+	const char *threadName = getOMRVMThreadName(vmThread->omrVMThread);
 	if (threadName) {
 		tgcExtensions->printf("\"%s\" (0x%p)\n", threadName, vmThread->osThread);
 	}

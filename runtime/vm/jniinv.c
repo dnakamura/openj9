@@ -1189,7 +1189,7 @@ static UDATA terminateRemainingThreads(J9VMThread* vmThread) {
 				const char * format = j9nls_lookup_message(J9NLS_INFO, J9NLS_VM_THREAD_PREVENTING_SHUTDOWN,
 					/* Cannot rely on NLS database existing at this point.  Add a default message string */
 					"Thread \"%s\" is still alive after running the shutdown hooks.\n");
-				char * threadName = getOMRVMThreadName(currentThread->omrVMThread);
+				const char * threadName = getOMRVMThreadName(currentThread->omrVMThread);
 				j9file_printf(PORTLIB, J9PORT_TTY_ERR, format, threadName);
 				releaseOMRVMThreadName(currentThread->omrVMThread);
 			}

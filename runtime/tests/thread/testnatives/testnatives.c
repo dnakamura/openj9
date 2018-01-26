@@ -302,7 +302,7 @@ getGCAlarmThread(J9VMThread *vmThread, J9JavaVM *javaVM)
 	do {
 		/* The GC Alarm thread is a system daemon thread */
 		if (0 != (walkThread->privateFlags & (J9_PRIVATE_FLAGS_SYSTEM_THREAD | J9_PRIVATE_FLAGS_DAEMON_THREAD))) {
-			char* name = getOMRVMThreadName(walkThread->omrVMThread);
+			const char* name = getOMRVMThreadName(walkThread->omrVMThread);
 			if (0 == strcmp(name, "GC Alarm")) {
 				/* found the GC Alarm thread */
 				gcAlarmVMThread = walkThread;

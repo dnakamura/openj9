@@ -45,7 +45,7 @@ static void printExceptionMessage (J9VMThread* vmThread, j9object_t exception);
 static void 
 printExceptionInThread(J9VMThread* vmThread) 
 {
-	char* name;
+	const char* name;
 	const char* format;
 
 	PORT_ACCESS_FROM_VMC(vmThread);

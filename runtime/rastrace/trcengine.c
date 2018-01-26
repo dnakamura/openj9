@@ -852,7 +852,7 @@ threadName(OMR_VMThread* vmThread)
 {
 	OMRPORT_ACCESS_FROM_OMRVMTHREAD(vmThread);
 	size_t nameLength = 0;
-	char *name = NULL;
+	const char *name = NULL;
 	char* allocatedName;
 
 	name = getOMRVMThreadName(vmThread);

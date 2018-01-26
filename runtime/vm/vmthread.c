@@ -1525,7 +1525,7 @@ void printThreadInfo(J9JavaVM *vm, J9VMThread *self, char *toFile, BOOLEAN allTh
 	if (currentThread) {
 		do {
 			if (currentThread->threadObject) {
-				char* threadName = getOMRVMThreadName(currentThread->omrVMThread);
+				const char* threadName = getOMRVMThreadName(currentThread->omrVMThread);
 				J9StackWalkState walkState;
 
 				trace_printf(PORTLIB, tracefd, "Thread=%s (%p) Status=%s\n", threadName, currentThread->osThread, getJ9ThreadStatus(currentThread));
@@ -1611,7 +1611,7 @@ printJ9ThreadStatusMonitorInfo(J9VMThread *vmThread, IDATA tracefd)
 	PORT_ACCESS_FROM_VMC(vmThread);
 	J9ThreadAbstractMonitor *blockingMonitor = NULL;
 	J9VMThread *owner = NULL;
-	char* ownerName = "";
+	const char* ownerName = "";
 	void* ownerPtr;
 	UDATA count = 0;
 	const char* name;
