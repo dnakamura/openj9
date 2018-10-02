@@ -41,8 +41,10 @@ enable_language(ASM)
 ### End basic housekeeping
 ###
 
-# Get platform specific configuration stuff
-include(cmake/platform.cmake)
+# Use platform configuration logic from OMR
+include(OmrPlatform)
+omr_platform_global_setup()
+#include(cmake/platform.cmake)
 
 # Pull in definitions for omr_add_hookgen and omr_add_tracegen
 # these will be in omr/cmake/modules
@@ -128,6 +130,24 @@ add_custom_target(j9vm_m4gen
 		"${CMAKE_CURRENT_BINARY_DIR}/redirector/generated.c"
 		"${CMAKE_CURRENT_BINARY_DIR}/j9vm/generated.h"
 )
+
+# Helper function for using m4 to generate assembly
+function(gen_m4_asm m4_file)
+	set(m4_defines "")
+	if(OMR_HOST_OS STREQUAL "linux")
+		set(m4_defines "-DLINUX")
+	elseif(OMR_HOST_OS STREQUAL "osx")
+		set(m4_defines "-DOSX")
+	endif()
+
+	get_filename_component(base_name "${m4_file}" NAME_WE)
+
+	add_custom_command(
+		OUTPUT ${base_name}.s
+		DEPENDS ${m4_file} run_constgen
+		COMMAND m4 -I${j9vm_SOURCE_DIR}/oti ${m4_defines} ${CMAKE_CURRENT_SOURCE_DIR}/${m4_file}  > ${base_name}.s
+	)
+endfunction(gen_m4_asm)
 
 
 ###
@@ -352,7 +372,7 @@ add_subdirectory(jsigWrapper)
 if(J9VM_MODULE_JVMTI)
 	add_subdirectory(jvmti)
 endif()
-#NOTE this is not conditional in the UMA module.xml
+
 add_subdirectory(libffi)
 add_subdirectory(mgmt)
 if(J9VM_MODULE_PORT)
@@ -395,9 +415,9 @@ endif()
 if(J9VM_INTERP_NATIVE_SUPPORT)
 	if(OMR_HOST_ARCH STREQUAL "x86" OR OMR_HOST_ARCH STREQUAL "ppc")
 		#jit only does x86/ppc at the moment, and only with GCC
-		if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		#if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 			add_subdirectory(compiler)
-		endif()
+		#endif()
 	endif()
 endif()
 if(J9VM_MODULE_UTIL)

@@ -30,10 +30,15 @@ target_link_libraries(j9thr
 		j9pool
 		j9utilcore
 		j9vm_interface
-	PUBLIC
-		pthread #TODO wrap in platform detection
-		rt
 )
+
+if(OMR_HOST_OS STREQUAL "linux")
+	target_link_libraries(j9thr PRIVATE pthread)
+endif()
+
+if(OMR_NEED_LIBRT)
+	target_link_libraries(j9thr PRIVATE rt)
+endif()
 
 install(
 	TARGETS j9thr

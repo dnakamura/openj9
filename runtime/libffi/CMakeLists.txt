@@ -37,11 +37,23 @@ target_include_directories(ffi PRIVATE ${j9vm_SOURCE_DIR}/include)
 if(OMR_ARCH_X86)
 	target_sources(ffi
 		PRIVATE
-		x86/ffi.c
-		x86/ffi64.c
-		x86/sysv.S
-		x86/unix64.S
+			x86/ffi.c
+			x86/ffi64.c
 	)
+	if(OMR_HOST_OS STREQUAL "linux")
+		target_sources(ffi
+			PRIVATE
+				x86/sysv.S
+				x86/unix64.S
+		)
+	elseif(OMR_HOST_OS STREQUAL "osx")
+		target_sources(ffi
+			PRIVATE
+				x86/darwin.S
+				x86/darwin64.S
+		)
+	endif()
+
 elseif(OMR_ARCH_POWER)
 	if(CMAKE_CXX_COMPILER_ID STREQUAL "XL")
 		set(CMAKE_ASM_FLAGS "-qalias=noansi -qxflag=LTOL:LTOL0 -qxflag=selinux -qarch=ppc64 -q64")
@@ -69,11 +81,12 @@ endif()
 
 target_include_directories(ffi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 if(OMR_ARCH_X86) #TODO check 64bit
-	target_include_directories(ffi
-		PUBLIC
-			preconf/xa
-			x86
-	)
+	target_include_directories(ffi PUBLIC x86)
+	if(OMR_HOST_OS STREQUAL "linux")
+		target_include_directories(ffi PUBLIC preconf/xa)
+	elseif(OMR_HOST_OS STREQUAL "osx")
+		target_include_directories(ffi PUBLIC preconf/osx)
+	endif()
 elseif(OMR_ARCH_POWER)
 	if(OMR_ENV_LITTLE_ENDIAN)
 		target_include_directories(ffi PUBLIC preconf/xl64)

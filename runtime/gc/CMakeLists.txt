@@ -73,8 +73,11 @@ target_link_libraries(j9gc
 		j9thr
 		#TODO need to do based on platform
 		pthread
-		rt
 )
+
+if(OMR_NEED_LIBRT)
+	target_link_libraries(j9gc PRIVATE rt)
+endif()
 
 target_include_directories(j9gc
 	PUBLIC

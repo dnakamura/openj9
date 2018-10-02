@@ -47,22 +47,14 @@ target_include_directories(j9codert_vm
 )
 
 if(OMR_ARCH_X86)
-  add_custom_command(
-	  OUTPUT xnathelp.s
-	  DEPENDS xnathelp.m4 run_constgen
-	  COMMAND m4 -I${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/xnathelp.m4 > xnathelp.s
-  )
+	gen_m4_asm(xnathelp.m4)
 
   # conditionalize this in the future
   target_sources(j9codert_vm PRIVATE
 	  xnathelp.s
   )
 elseif(OMR_ARCH_POWER)
-  add_custom_command(
-	  OUTPUT pnathelp.s
-	  DEPENDS pnathelp.m4 run_constgen
-	  COMMAND m4 -I${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/pnathelp.m4 > pnathelp.s
-  )
+	gen_m4_asm(pnathelp.m4)
 
   # conditionalize this in the future
   target_sources(j9codert_vm PRIVATE

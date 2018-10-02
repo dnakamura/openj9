@@ -129,18 +129,10 @@ add_library(j9vm SHARED
 #TODO we should be detecting m4 properly
 #also we probably need to fix up the path dir separators for windows
 if(OMR_ARCH_X86)
-	add_custom_command( OUTPUT xcinterp.s
-		DEPENDS xcinterp.m4 run_constgen
-		COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/xcinterp.m4 > xcinterp.s
-	)
-	add_custom_command(OUTPUT stackswap.s
-		DEPENDS xa64/stackswap.m4 run_constgen
-		COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/xa64/stackswap.m4 > stackswap.s
-	)
-	add_custom_command(OUTPUT unsafeHelper.s
-		DEPENDS xa64/unsafeHelper.m4 run_constgen
-		COMMAND m4 -I ${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/xa64/unsafeHelper.m4 > unsafeHelper.s
-	)
+	gen_m4_asm(xcinterp.m4)
+	gen_m4_asm(xa64/stackswap.m4)
+	gen_m4_asm(xa64/unsafeHelper.m4)
+
 	target_sources(j9vm
 		PRIVATE
 		unsafeHelper.s

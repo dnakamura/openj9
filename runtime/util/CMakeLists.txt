@@ -25,13 +25,8 @@ add_tracegen(util.tdf j9util)
 add_tracegen(vmutil.tdf j9vmutil)
 add_tracegen(module.tdf)
 add_tracegen(srphashtable.tdf)
+gen_m4_asm(fpsup.m4)
 
-
-add_custom_command(
-	OUTPUT fpusup.s
-	DEPENDS fpusup.m4 run_constgen
-	COMMAND m4 -I${CMAKE_CURRENT_SOURCE_DIR}/../oti ${CMAKE_CURRENT_SOURCE_DIR}/fpusup.m4 > fpusup.s
-)
 add_library(j9util STATIC
 	alignedmemcpy.c
 	annhelp.c

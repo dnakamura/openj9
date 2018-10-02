@@ -109,9 +109,16 @@ target_link_libraries(j9prt
 		j9thr
 		#TODO fix this, its not platform agnostic
 		dl
-		rt
-
 )
+
+if(OMR_NEED_LIBRT)
+	target_link_libraries(j9prt PRIVATE rt)
+endif()
+
+if(OMR_HOST_OS STREQUAL "osx")
+	target_link_libraries(j9prt PRIVATE iconv)
+endif()
+
 
 target_compile_definitions(j9prt
 	PRIVATE
