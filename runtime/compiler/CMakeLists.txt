@@ -55,6 +55,8 @@ set(MASM2GAS_PATH  ${masm2gas_path} CACHE INTERNAL "MASM2GAS PATH")
 # To the defaults provided by create_omr_compiler_library
 set(J9JIT_FILES "" CACHE INTERNAL "The computed list of j9jit files")
 
+set(J9JIT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+
 # Used inside added subdirectories to help
 # fill in the object list
 macro(j9jit_files)
@@ -82,6 +84,12 @@ if(TR_HOST_ARCH STREQUAL "p" OR TR_TARGET_ARCH STREQUAL "p")
 	add_subdirectory(p)
 endif()
 if(TR_HOST_ARCH STREQUAL "z" OR TR_TARGET_ARCH STREQUAL "z")
+	j9vm_gen_asm(
+		"z/runtime/Math.m4"
+		"z/runtime/PicBuilder.m4"
+		"z/runtime/Recompilation.m4"
+		"z/runtime/ValueProf.m4"
+	)
 	add_subdirectory(z)
 endif()
 if(TR_HOST_ARCH STREQUAL "arm" OR TR_TARGET_ARCH STREQUAL "arm")

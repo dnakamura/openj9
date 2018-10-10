@@ -21,13 +21,11 @@
 ################################################################################
 
 
-j9vm_gen_asm(
-    "Math.m4"
-    "PicBuilder.m4"
-    "ValueProf.m4"
-)
 j9jit_files(
+    ${J9JIT_BINARY_DIR}/Math.s
+    ${J9JIT_BINARY_DIR}/PicBuilder.s
     Recomp.cpp
-    s390m4check.c
+    ${J9JIT_BINARY_DIR}/Recompilation.s
     S390RelocationTarget.cpp
+    ${J9JIT_BINARY_DIR}/ValueProf.s
 )
