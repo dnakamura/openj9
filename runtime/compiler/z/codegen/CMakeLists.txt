@@ -1,5 +1,5 @@
 ################################################################################
-# Copyright (c) 2018, 2018 IBM Corp. and others
+# Copyright (c) 2017, 2018 IBM Corp. and others
 #
 # This program and the accompanying materials are made available under
 # the terms of the Eclipse Public License 2.0 which accompanies this
@@ -20,35 +20,29 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 ################################################################################
 
-# Include once
-if(COMMAND j9vm_gen_asm)
-	return()
-endif()
-
-# Helper function for generating assembly from m4
-# usage: j9vm_gen_asm(some_file.m4 ....)
-# converts 'some_file.m4' into 'some_file.s'.
-# Note: path is interpreted relative to CMAKE_CURRENT_SOURCE_DIR
-# .s file is put in CMAKE_CURRENT_BINARY_DIR 
-# Directory names from the input are ignored. IE. foo/bar.m4 > bar.s 
-function(j9vm_gen_asm)
-	set(m4_defines "")
-	if(OMR_HOST_OS STREQUAL "linux")
-		set(m4_defines "-DLINUX")
-	elseif(OMR_HOST_OS STREQUAL "osx")
-		set(m4_defines "-DOSX")
-	endif()
-	#TODO need to add other platforms here
-
-	foreach(m4_file IN LISTS ARGN)
-		get_filename_component(base_name "${m4_file}" NAME_WE)
-		
-		add_custom_command(
-			OUTPUT ${base_name}.s
-			DEPENDS ${m4_file} run_constgen
-			COMMAND m4 -I "${j9vm_SOURCE_DIR}/oti" -I "${CMAKE_CURRENT_SOURCE_DIR}" ${m4_defines} ${CMAKE_CURRENT_SOURCE_DIR}/${m4_file} > ${base_name}.s
-		)
-	endforeach()
-
-
-endfunction(j9vm_gen_asm)
+j9jit_files(
+    z/codegen/DFPTreeEvaluator.cpp
+    z/codegen/ForceRecompilationSnippet.cpp
+    z/codegen/InMemoryLoadStoreMarking.cpp
+    z/codegen/J9AheadOfTimeCompile.cpp
+    z/codegen/J9BCDTreeEvaluator.cpp
+    z/codegen/J9CodeGenerator.cpp
+    z/codegen/J9CodeGenPhase.cpp
+    z/codegen/J9Instruction.cpp
+    z/codegen/J9Linkage.cpp
+    z/codegen/J9MemoryReference.cpp
+    z/codegen/J9S390CHelperLinkage.cpp
+    z/codegen/J9S390PrivateLinkage.cpp
+    z/codegen/J9S390Snippet.cpp
+    z/codegen/J9S390SystemLinkage.cpp
+    z/codegen/J9TreeEvaluator.cpp
+    z/codegen/J9UnresolvedDataSnippet.cpp
+    z/codegen/J9ZSnippet.cpp
+    z/codegen/ReduceSynchronizedFieldLoad.cpp
+    z/codegen/S390AOTRelocation.cpp
+    z/codegen/S390J9CallSnippet.cpp
+    z/codegen/S390Recompilation.cpp
+    z/codegen/S390Register.cpp
+    z/codegen/S390StackCheckFailureSnippet.cpp
+    z/codegen/UncommonBCDCHKAddressNode.cpp
+)

@@ -36,6 +36,8 @@ if(OMR_ARCH_X86)
 	target_compile_definitions(j9vm_compiler_defines INTERFACE TR_TARGET_X86 TR_HOST_X86)
 elseif(OMR_ARCH_POWER)
 	target_compile_definitions(j9vm_compiler_defines INTERFACE TR_TARGET_POWER TR_HOST_POWER)
+elseif(OMR_ARCH_S390)
+	target_compile_definitions(j9vm_compiler_defines INTERFACE TR_TARGET_S390 TR_HOST_S390)
 else()
 	message(FATAL_ERROR "Currently only x86 and ppc are supported under CMake")
 endif() #TODO OTHER PLATFORMS

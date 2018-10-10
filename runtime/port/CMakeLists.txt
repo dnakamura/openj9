@@ -58,6 +58,11 @@ if(OMR_ARCH_X86)
 	)
 elseif(OMR_ARCH_POWER)
 	list(APPEND OBJECTS j9hypervisor_systemp.c)
+elseif(OMR_ARCH_S390)
+	list(APPEND OBJECTS
+		j9gs_s390.c
+		j9hypervisor_systemz.c
+	)
 endif()
 
 if(J9VM_PORT_RUNTIME_INSTRUMENTATION)
@@ -67,10 +72,14 @@ endif()
 set(resolvedPaths "")
 set(VPATH "")
 
-if(OMR_ARCH_X86) #TODO and linux
-	list(APPEND VPATH linuxamd64)
-elseif(OMR_ARCH_POWER) #TODO and linux
-	list(APPEND VPATH linuxppc)
+if(OMR_HOST_OS STREQUAL "linux")
+	if(OMR_ARCH_X86)
+		list(APPEND VPATH linuxamd64)
+	elseif(OMR_ARCH_POWER)
+		list(APPEND VPATH linuxppc)
+	elseif(OMR_ARCH_S390)
+		list(APPEND VPATH linuxs390)
+	endif()
 endif()
 
 list(APPEND VPATH
@@ -122,8 +131,7 @@ target_compile_definitions(j9prt
 
 target_include_directories(j9prt
 	PRIVATE
-		unix
-		unix_include
+		${VPATH}
 	PUBLIC
 		include
 		common

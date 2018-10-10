@@ -154,6 +154,18 @@ elseif(OMR_ARCH_POWER) #TODO check linux and 64bit
 			xl64/unsafeHelper.s
 			pcinterp.s
 	)
+elseif(OMR_ARCH_S390)
+	j9vm_gen_asm(zcinterp.m4)
+	if(NOT (OMR_ENV_DATA64 AND (OMR_HOST_OS STREQUAL "linux")))
+		message(SEND_ERROR "only zlinux 64 is currently supported")
+	endif()
+	target_sources(j9vm
+		PRIVATE
+			zcinterp.s
+			xz64/unsafeHelper.s
+	)
+else()
+	message(SEND_ERROR "Unsupported processor architecture")
 endif()
 
 target_include_directories(j9vm

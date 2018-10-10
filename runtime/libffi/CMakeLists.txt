@@ -92,6 +92,20 @@ elseif(OMR_ARCH_POWER)
 		target_include_directories(ffi PUBLIC preconf/xp64)
 	endif()
 	target_include_directories(ffi PUBLIC powerpc)
+elseif(OMR_ARCH_S390)
+	target_include_directories(ffi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/z)
+	if((OMR_HOST_OS STREQUAL "linux") AND OMR_ENV_DATA64)
+		target_include_directories(ffi PUBLIC preconf/xz64 s390)
+		target_sources(ffi
+			PRIVATE
+				s390/ffi.c
+				s390/sysv.S
+		)
+	else()
+		message(SEND_ERROR "unsupported platform")
+	endif()
+else()
+	message(SEND_ERROR "Unsupported platform")
 endif()
 
 install(
