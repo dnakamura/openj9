@@ -32,6 +32,19 @@ target_link_libraries(gptest
 		pthread
 )
 target_include_directories(gptest PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
+omr_add_exports(gptest
+	Java_VMBench_GPTests_GPTest_gpFloat
+	Java_VMBench_GPTests_GPTest_gpIll
+	Java_VMBench_GPTests_GPTest_gpRead
+	Java_VMBench_GPTests_GPTest_gpWrite
+	Java_VMBench_GPTests_GPTest_gpHardwareFloat
+	Java_VMBench_GPTests_GPTest_gpHardwareRead
+	Java_VMBench_GPTests_GPTest_gpSoftwareFloat
+	Java_VMBench_GPTests_GPTest_gpSoftwareRead
+	Java_VMBench_GPTests_GPTest_gpAbort
+)
+
 install(
 	TARGETS gptest
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}

@@ -43,6 +43,12 @@ target_link_libraries(harmony_jvm
 # We actually want the library to be named "jvm.{so|dll}"
 set_target_properties(harmony_jvm PROPERTIES LIBRARY_OUTPUT_NAME "jvm")
 
+omr_add_exports(harmony_jvm
+	JNI_CreateJavaVM
+	JNI_GetCreatedJavaVMs
+	JNI_GetDefaultJavaVMInitArgs
+)
+
 install(
 	TARGETS harmony_jvm
 	LIBRARY DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}
