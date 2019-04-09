@@ -40,6 +40,9 @@ if(OMR_HOST_OS STREQUAL "linux")
 	target_link_libraries(j9thr PUBLIC pthread)
 endif()
 
+get_target_property(thread_exports j9thr_obj EXPORTED_SYMBOLS)
+omr_add_exports(j9thr ${thread_exports})
+
 install(
 	TARGETS j9thr
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}

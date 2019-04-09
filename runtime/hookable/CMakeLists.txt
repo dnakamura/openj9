@@ -33,6 +33,9 @@ target_link_libraries(j9hookable
 		j9thr
 )
 
+get_target_property(hookable_exports j9hook_obj EXPORTED_SYMBOLS)
+omr_add_exports(j9hookable ${hookable_exports})
+
 install(
 	TARGETS j9hookable
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}
