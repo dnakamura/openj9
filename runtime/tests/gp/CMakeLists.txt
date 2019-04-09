@@ -26,12 +26,12 @@ add_library(gptest SHARED
 	gptest.c
 	${CMAKE_CURRENT_BINARY_DIR}/ut_gptest.c
 )
-target_link_libraries(gptest
-	PRIVATE
-		j9vm_interface
-		pthread
-)
+target_link_libraries(gptest PRIVATE j9vm_interface)
 target_include_directories(gptest PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
+if(OMR_OS_LINUX)
+	target_link_libraries(gptest PRIVATE pthread)
+endif()
 
 omr_add_exports(gptest
 	Java_VMBench_GPTests_GPTest_gpFloat
@@ -48,4 +48,5 @@ omr_add_exports(gptest
 install(
 	TARGETS gptest
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}
+	RUNTIME DESTINATION ${j9vm_SOURCE_DIR}
 )
