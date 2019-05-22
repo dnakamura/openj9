@@ -264,15 +264,15 @@ target_link_libraries(j9vm_main_wrapper
 ###
 
 make_ddr_set(j9ddr)
-+if(OMR_DDR)
-+set_target_properties(j9ddr PROPERTIES
-+       BLACKLIST "${CMAKE_CURRENT_SOURCE_DIR}/ddr/blacklist"
-+       OVERRIDES_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ddr/overrides"
-+       BLOB "${CMAKE_CURRENT_BINARY_DIR}/j9ddr.dat"
-+       SUPERSET "${CMAKE_BINARY_DIR}/superset.dat"
-+)
-+target_enable_ddr(ddr_headers j9ddr)
-set_property(TARGET ddr_headers PROPERTY DDR_HEADERS
+if(OMR_DDR)
+set_target_properties(j9ddr PROPERTIES
+       BLACKLIST "${CMAKE_CURRENT_SOURCE_DIR}/ddr/blacklist"
+       OVERRIDES_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ddr/overrides"
+       BLOB "${CMAKE_CURRENT_BINARY_DIR}/j9ddr.dat"
+       SUPERSET "${CMAKE_BINARY_DIR}/superset.dat"
+)
+
+set_property(TARGET j9ddr PROPERTY DDR_HEADERS
 	oti/bcverify.h
 	oti/cfr.h
 	oti/dbg.h
