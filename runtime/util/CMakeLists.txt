@@ -135,4 +135,7 @@ target_link_libraries(j9util
 )
 
 target_enable_ddr(j9util GLOB_HEADERS)
+ddr_add_headers(j9util
+	${j9vm_SOURCE_DIR}/oti/util_api.h
+)
 ddr_set_add_target(j9ddr j9util)
