@@ -75,10 +75,10 @@ omr_add_exports(j9trc
 
 target_enable_ddr(j9trc j9ddr)
 set_property(TARGET j9trc APPEND PROPERTY DDR_HEADERS
-	rastrace/j9rastrace.h
-	rastrace/rastrace_internal.h
-	rastrace/trcqueue.h
-	rastrace/trctrigger.h
+	j9rastrace.h
+	rastrace_internal.h
+	trcqueue.h
+	trctrigger.h
 
 	${j9vm_SOURCE_DIR}/include/rastrace_external.h
 	${j9vm_SOURCE_DIR}/include/ute.h
