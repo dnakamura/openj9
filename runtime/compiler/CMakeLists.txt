@@ -276,6 +276,12 @@ elseif(OMR_OS_WINDOWS)
 endif()
 set_property(TARGET j9jit PROPERTY LINKER_LANGUAGE CXX)
 
+target_enable_ddr(j9jit)
+ddr_add_headers(j9jit
+	runtime/MethodMetaData.h
+)
+ddr_set_add_targets(j9ddr j9jit)
+
 install(
 	TARGETS j9jit
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}

@@ -73,7 +73,14 @@ omr_add_exports(j9trc
 	J9VMDllMain
 )
 
-target_enable_ddr(j9trc j9ddr)
+target_enable_ddr(j9trc GLOB_HEADERS)
+ddr_add_headers(j9trc
+	${j9vm_SOURCE_DIR}/include/rastrace_external.h
+	${j9vm_SOURCE_DIR}/include/ute.h
+	${j9vm_SOURCE_DIR}/oti/j9trace.h
+)
+ddr_set_add_targets(j9ddr j9trc)
+
 
 install(
 	TARGETS j9trc

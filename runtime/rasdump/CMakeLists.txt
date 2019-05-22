@@ -68,6 +68,9 @@ omr_add_exports(j9dmp
 	J9VMDllMain
 )
 
+target_enable_ddr(j9dmp GLOB_HEADERS)
+ddr_set_add_targets(j9ddr j9dmp)
+
 install(
 	TARGETS j9dmp
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}

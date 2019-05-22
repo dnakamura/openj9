@@ -62,3 +62,6 @@ target_link_libraries(j9realtime
 if(OMR_OS_WINDOWS)
 	target_link_libraries(j9realtime PRIVATE winmm.lib)
 endif()
+
+target_enable_ddr(j9realtime GLOB_HEADERS)
+ddr_set_add_targets(j9ddr j9realtime)

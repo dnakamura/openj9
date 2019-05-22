@@ -1,5 +1,5 @@
 ################################################################################
-# Copyright (c) 2017, 2018 IBM Corp. and others
+# Copyright (c) 2017, 2019 IBM Corp. and others
 #
 # This program and the accompanying materials are made available under
 # the terms of the Eclipse Public License 2.0 which accompanies this
@@ -72,3 +72,9 @@ target_link_libraries(j9codert_vm
 		j9vm_interface
 		j9vm_compiler_defines
 )
+
+target_enable_ddr(j9codert_vm GLOB_HEADERS)
+ddr_add_headers(j9codert_vm
+	${j9vm_SOURCE_DIR}/oti/stackwalk.h
+)
+ddr_set_add_targets(j9ddr j9codert_vm)
