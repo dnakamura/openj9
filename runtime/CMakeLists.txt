@@ -61,7 +61,7 @@ include(OmrDDRSupport)
 include(cmake/build_tags.cmake)
 include(cmake/compiler_config.cmake)
 include(cmake/J9vmGenAsm.cmake)
-
+set(omr_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/omr)
 ###
 ### Various configuration
 ### all configuration that does not need to proceed J9vmPlatform
@@ -381,6 +381,7 @@ add_subdirectory(gc_glue_java)
 # needed to grab the headers created by trace/hookgen
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_subdirectory("${J9VM_OMR_DIR}" omr)
+ddr_set_add_targets(j9ddr omrddr)
 
 # Due to CMake technical limitations we can't properly propagate dependencies
 # to omrutil via the glue.

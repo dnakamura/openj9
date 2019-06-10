@@ -276,7 +276,7 @@ elseif(OMR_OS_WINDOWS)
 endif()
 set_property(TARGET j9jit PROPERTY LINKER_LANGUAGE CXX)
 
-target_enable_ddr(j9jit)
+target_enable_ddr(j9jit NO_DEBUG_INFO)
 ddr_add_headers(j9jit
 	runtime/MethodMetaData.h
 )

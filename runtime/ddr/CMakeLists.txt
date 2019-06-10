@@ -40,8 +40,9 @@ target_include_directories(j9ddr_misc
 	${omr_SOURCE_DIR}/compiler
 )
 
-if(OMR_TOOLCONFIG STREQUAL "GNU")
-	target_compile_options(j9ddr_misc PRIVATE  -femit-class-debug-always)
+if(OMR_TOOLCONFIG STREQUAL "gnu")
+	target_compile_options(j9ddr_misc PRIVATE   -femit-class-debug-always)
 endif()
-
-target_enable_ddr(j9ddr_misc j9ddr)
+message(STATUS "DEBUG tooling = ${OMR_TOOLCONFIG}")
+target_enable_ddr(j9ddr_misc)
+ddr_set_add_targets(j9ddr j9ddr_misc)
