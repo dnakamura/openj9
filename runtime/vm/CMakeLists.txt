@@ -212,7 +212,8 @@ if(J9VM_INTERP_TRACING)
 	omr_add_exports(j9vm trace)
 endif()
 
-target_enable_ddr(j9vm j9ddr)
+target_enable_ddr(j9vm)
+ddr_set_add_targets(j9ddr j9vm)
 
 install(
 	TARGETS j9vm
