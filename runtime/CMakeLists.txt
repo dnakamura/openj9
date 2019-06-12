@@ -311,7 +311,7 @@ set(OMR_UTIL_GLUE_TARGET "j9vm_util_glue" CACHE INTERNAL "")
 # setup OMR library overrides
 set(OMR_GC_LIB "j9gc" CACHE INTERNAL "")
 set(OMR_HOOK_LIB "j9hookable" CACHE INTERNAL "")
-set(OMR_PORT_LIB "j9prt" CACHE INTERNAL "")
+set(OMR_PORT_LIB "j9prt" "j9thr" CACHE INTERNAL "")
 set(OMR_THREAD_LIB "j9thr" CACHE INTERNAL "")
 set(OMR_TRACE_LIB "j9trc" CACHE INTERNAL "")
 
