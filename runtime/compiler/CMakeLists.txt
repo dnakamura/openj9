@@ -225,6 +225,14 @@ elseif(OMR_OS_WINDOWS)
 		-DSUPPORTS_THREAD_LOCAL
 		-DWINDOWS
 	)
+else(OMR_OS_AIX)
+	set(J9_SHAREDFLAGS
+		-DAIXPPC
+		-DRS6000
+		-D_XOPEN_SOURCE_EXTENDED=1
+		-D_ALL_SOURCE
+		-DSUPPORTS_THREAD_LOCAL
+	)
 else()
 	message(SEND_ERROR "unsupported platform")
 endif()
