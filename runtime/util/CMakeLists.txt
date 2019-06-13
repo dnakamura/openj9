@@ -111,7 +111,7 @@ if(OMR_OS_LINUX)
 elseif(OMR_OS_WINDOWS)
 	target_sources(j9util PRIVATE win32/openlibrary.c)
 elseif(OMR_OS_AIX)
-	target_sources(j9util PRIVATE aix/sethwpretech.c)
+	target_sources(j9util PRIVATE aix/sethwprefetch.c)
 endif()
 
 if(OMR_ARCH_X86)
