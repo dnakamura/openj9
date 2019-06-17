@@ -77,6 +77,8 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(OMR_HOST_OS STREQUAL "osx")
 	set(CMAKE_INSTALL_RPATH "@loader_path")
+elseif(OMR_OS_AIX)
+	set(CMAKE_INSTALL_RPATH ".")
 else()
 	set(CMAKE_INSTALL_RPATH "\$ORIGIN")
 endif()
