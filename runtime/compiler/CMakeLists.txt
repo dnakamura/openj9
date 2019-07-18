@@ -49,6 +49,12 @@ if(OMR_ARCH_X86)
 	omr_append_flags(CMAKE_ASM_NASM_FLAGS ${asm_inc_dirs})
 endif()
 
+# This target is created so that various subdirectories can add dependencies to it
+# the j9jit target will then depend on it, propagating the dependencies.
+# This is required because at the time we include the subdirectories, the j9jit target
+# does not yet exist (and as such cant have dependencies addded to it)
+add_custom_target(j9jit_generate)
+
 # On windows exceptions are controlled via a the preprocessor define _HAS_EXCEPTIONS
 # We need to enable it again, after omr platform config removed it
 get_directory_property(compile_defs COMPILE_DEFINITIONS)
@@ -301,6 +307,7 @@ create_omr_compiler_library(NAME j9jit
 add_dependencies(j9jit
 	omrgc_hookgen
 	j9jit_tracegen
+	j9jit_generate
 )
 
 if(JITSERVER_SUPPORT)
