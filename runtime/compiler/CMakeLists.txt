@@ -335,10 +335,10 @@ if(JITSERVER_SUPPORT)
 endif()
 
 set_source_files_properties(
-	${CMAKE_CURRENT_BINARY_DIR}/z/env/Math.s
-	${CMAKE_CURRENT_BINARY_DIR}/z/env/PicBuilder.s
-	${CMAKE_CURRENT_BINARY_DIR}/z/env/Recompilation.s
-	${CMAKE_CURRENT_BINARY_DIR}/z/env/ValueProf.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/runtime/Math.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/runtime/PicBuilder.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/runtime/Recompilation.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/runtime/ValueProf.s
 	PROPERTIES
 	GENERATED TRUE
 )
