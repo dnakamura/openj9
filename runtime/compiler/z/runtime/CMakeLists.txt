@@ -31,7 +31,7 @@ j9vm_gen_asm(
 	Recompilation.m4
 	ValueProf.m4
 	DEFINES ${m4_defs}
-	INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}
+	INCLUDE_DIRECTORIES ${j9vm_SOURCE_DIR/compiler}
 )
 
 # Note we have to define a custom target here to ensure the assembly files are made before building
