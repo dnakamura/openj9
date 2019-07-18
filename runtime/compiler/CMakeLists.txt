@@ -334,6 +334,15 @@ if(JITSERVER_SUPPORT)
 	target_link_libraries(j9jit PRIVATE ${Protobuf_LIBRARIES})
 endif()
 
+set_source_files_properties(
+	${CMAKE_CURRENT_BINARY_DIR}/z/env/Math.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/env/PicBuilder.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/env/Recompilation.s
+	${CMAKE_CURRENT_BINARY_DIR}/z/env/ValueProf.s
+	PROPERTIES
+	GENERATED TRUE
+)
+
 if(OMR_OS_LINUX)
 	set_property(TARGET j9jit APPEND_STRING PROPERTY
 		LINK_FLAGS "  -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/build/scripts/j9jit.linux.exp")
