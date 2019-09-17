@@ -25,6 +25,8 @@ import com.ibm.uma.IConfiguration;
 import com.ibm.uma.UMA;
 import com.ibm.uma.UMAException;
 import com.ibm.uma.om.Artifact;
+import com.ibm.uma.om.Export;
+import com.ibm.uma.util.FileAssistant;
 
 public class PlatformZOS extends PlatformUnix {
 	public PlatformZOS( IConfiguration buildSpec ) {
@@ -73,7 +75,24 @@ public class PlatformZOS extends PlatformUnix {
 		}
 		return libname;
 	}
-	
+
+	@Override
+	protected void writeExportFile(Artifact artifact) throws UMAException {
+		if ( !(artifact.getType() == Artifact.TYPE_BUNDLE) && !(artifact.getType() == Artifact.TYPE_SHARED) )  return;
+		
+
+		String filename = UMA.getUma().getRootDirectory() + artifact.getContainingModule().getFullName() + "/" + artifact.getTargetNameWithScope() + ".exp";
+		FileAssistant fa = new FileAssistant(filename);
+		StringBuffer buffer = fa.getStringBuffer();
+
+		Vector<Export> exports = artifact.getExportedFunctions();
+
+		for ( Export export : exports ) {
+			buffer.append("-u" + stripExportName(export.getExport()) + " ");
+		}
+		fa.writeToDisk();
+	}
+
 	@Override
 	protected void addPlatformSpecificLibraryLocationInformation(Artifact artifact, StringBuffer buffer) throws UMAException {
 		super.addPlatformSpecificLibraryLocationInformation(artifact, buffer);
