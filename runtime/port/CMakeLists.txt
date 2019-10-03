@@ -183,6 +183,7 @@ target_include_directories(j9prt
 		include
 		common
 	PRIVATE
+		$<TARGET_PROPERTY:omrport_obj,INCLUDE_DIRECTORIES>
 		${CMAKE_CURRENT_BINARY_DIR}
 		${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -197,9 +198,7 @@ omr_add_exports(j9prt
 	j9port_startup_library
 )
 
-# Note: we need to pass EARLY_SOURCE_EVAL because the ddr logic chokes on
-# $<TARGET_OBJECTS:omrport_obj> on older versions of cmake
-target_enable_ddr(j9prt EARLY_SOURCE_EVAL GLOB_HEADERS)
+target_enable_ddr(j9prt GLOB_HEADERS)
 ddr_set_add_targets(j9ddr j9prt)
 
 install(
