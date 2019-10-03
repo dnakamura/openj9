@@ -32,9 +32,6 @@
 add_tracegen(common/j9prt.tdf)
 add_library(j9prt SHARED
 	${CMAKE_CURRENT_BINARY_DIR}/ut_j9prt.c
-
-	# Pull in the objects compiled as part of the OMR port library
-	$<TARGET_OBJECTS:omrport_obj>
 )
 
 set(OBJECTS "")
@@ -145,6 +142,7 @@ target_link_libraries(j9prt
 
 	PRIVATE
 		omrsig
+		omrport
 		j9utilcore
 		j9pool
 		j9hashtable
@@ -185,7 +183,6 @@ target_include_directories(j9prt
 		include
 		common
 	PRIVATE
-		$<TARGET_PROPERTY:omrport_obj,INCLUDE_DIRECTORIES>
 		${CMAKE_CURRENT_BINARY_DIR}
 		${CMAKE_CURRENT_SOURCE_DIR}
 )
