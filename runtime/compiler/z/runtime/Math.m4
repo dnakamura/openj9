@@ -27,7 +27,13 @@ ZZ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR
 ZZ GPL-2.0 WITH Classpath-exception-2.0 OR
 ZZ LicenseRef-GPL-2.0 WITH Assembly-exception
 
+ZZ ===================================================================
+ZZ oti/jilvalues.m4 is an m4 include that defines offsets of various
+ZZ fields in structs used by jit. Note: that it changes the quote style
+ZZ to using  curly braces
+ZZ ===================================================================
 
+include(`jilvalues.m4')
 changequote([,])dnl
 
 ifdef([J9ZOS390],[dnl
@@ -45,10 +51,6 @@ MATH#START      AMODE 31
 
 define([MATH_M4],[1])
 
-ZZ ===================================================================
-ZZ codert/jilconsts.inc is a j9 assembler include that defines
-ZZ offsets of various fields in structs used by jit
-ZZ ===================================================================
 
 include([jilconsts.inc])dnl
 

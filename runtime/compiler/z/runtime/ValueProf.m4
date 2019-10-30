@@ -4,7 +4,7 @@ define(`ZZ',`**')
 define(`ZZ',`##')
 ')dnl
 
-ZZ Copyright (c) 2000, 2017 IBM Corp. and others
+ZZ Copyright (c) 2000, 2019 IBM Corp. and others
 ZZ
 ZZ This program and the accompanying materials are made 
 ZZ available under the terms of the Eclipse Public License 2.0 
@@ -27,6 +27,13 @@ ZZ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR
 ZZ GPL-2.0 WITH Classpath-exception-2.0 OR
 ZZ LicenseRef-GPL-2.0 WITH Assembly-exception
 
+ZZ ===================================================================
+ZZ oti/jilvalues.m4 is an m4 include that defines offsets of various
+ZZ fields in structs used by jit. Note: that it changes the quote style
+ZZ to using  curly braces
+ZZ ===================================================================
+
+include(`jilvalues.m4')
 changequote([,])dnl
 
 ifdef([J9ZOS390],[dnl
@@ -43,13 +50,6 @@ VALPROF#START      AMODE 31
 ])dnl
 
 define([VALPROF_M4],[1])
-
-ZZ ===================================================================
-ZZ codert/jilconsts.inc is a j9 assembler include that defines
-ZZ offsets of various fields in structs used by jit
-ZZ ===================================================================
-
-include([jilconsts.inc])dnl
 
 
 include([z/runtime/s390_macros.inc])dnl

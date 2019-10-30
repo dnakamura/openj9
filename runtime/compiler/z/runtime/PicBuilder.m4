@@ -33,9 +33,12 @@ ZZ For zLinux GAS assembler and zOS HLASM assembler
 ZZ ===================================================================
 
 ZZ ===================================================================
-ZZ changequote is used to replace ` with [ and ' with ]
-ZZ For better readability
+ZZ oti/jilvalues.m4 is an m4 include that defines offsets of various
+ZZ fields in structs used by jit. Note: that it changes the quote style
+ZZ to using  curly braces
 ZZ ===================================================================
+
+include(`jilvalues.m4')
 changequote([,])dnl
 
 ZZ ===================================================================
@@ -85,12 +88,6 @@ ZZ As a rule of thumb,if the helper we're calling begins with "jit"
 ZZ then stack walker concerned about the stack shape
 ZZ ===================================================================
 
-ZZ ===================================================================
-ZZ codert/jilconsts.inc is a j9 assembler include that defines
-ZZ offsets of various fields in structs used by jit
-ZZ ===================================================================
-
-include([jilconsts.inc])dnl
 
 ZZ ===================================================================
 ZZ codert.dev/s390_asdef.inc is a JIT assembler include that defines
