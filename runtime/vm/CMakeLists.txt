@@ -55,6 +55,7 @@ add_library(j9vm SHARED
 	FastJNI_java_lang_Throwable.cpp
 	FastJNI_sun_misc_Unsafe.cpp
 	findmethod.c
+	FlushProcessWriteBuffers.cpp
 	gphandle.c
 	growstack.cpp
 	guardedstorage.c
