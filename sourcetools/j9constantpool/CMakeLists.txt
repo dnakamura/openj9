@@ -20,6 +20,20 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 ################################################################################
 
+# Cmake doesnt properly handle directory separators when building in cygwin
+# but using a windows java binary
+
+# WIN32 will be true when the build is targeting windows, but CMAKE_HOST_WIN32 is false on cygwin
+if(WIN32 AND NOT CMAKE_HOST_WIN32)
+	# put  "-cp <Path_to_objectmodel_jar>" into a text file we will pass in with '@file'
+	get_target_property(objectmodel_jar objectmodel JAR_FILE)
+	file(GENERATE OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/cygwin_classpath_hack" CONTENT "-cp\n$<TARGET_PROPERTY:objectmodel,JAR_FILE>\n")
+	set(CYGWIN_HACK "@${CMAKE_CURRENT_BINARY_DIR}/cygwin_classpath_hack")
+else()
+	set(CYGWIN_HACK)
+endif()
+
+
 add_jar(j9vmcp
 	SOURCES
 		com/ibm/oti/VMCPTool/ClassRef.java
@@ -41,6 +55,6 @@ add_jar(j9vmcp
 		com/ibm/oti/VMCPTool/UmaFlagInfo.java
 		com/ibm/oti/VMCPTool/Util.java
 		com/ibm/oti/VMCPTool/VirtualMethodRef.java
-
+		${CYGWIN_HACK}
 	INCLUDE_JARS objectmodel
 )
