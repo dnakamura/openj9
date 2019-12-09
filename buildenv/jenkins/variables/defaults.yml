@@ -167,6 +167,8 @@ ppc64le_linux:
   excluded_tests:
     13:
       - special.system
+ppc64le_linux_cm:
+  extends: ['ppc64le_linux', 'cmake']
 #========================================#
 # Linux PPCLE 64bits Large Heap
 #========================================#
