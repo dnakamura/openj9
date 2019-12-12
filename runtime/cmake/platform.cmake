@@ -21,8 +21,8 @@
 ################################################################################
 
 include(OmrPlatform)
-# Note: we need to inject WIN32 et al, as OMR no longer uses them
-if(OMR_OS_WINDOWS)
+# perf hackery
+list(APPEND OMR_PLATFORM_COMPILE_OPTIONS "-O3")
     list(APPEND OMR_PLATFORM_DEFINITIONS
         -DWIN32
         -D_WIN32
@@ -45,13 +45,17 @@ if(OMR_TOOLCONFIG STREQUAL "gnu")
     if(NOT OMR_OS_OSX)
         set(CMAKE_SHARED_LINKER_FLAGS "-Wl,-z,defs ${CMAKE_SHARED_LINKER_FLAGS}")
     endif()
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -O3 -fno-strict-aliasing")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -fno-strict-aliasing -fno-exceptions -fno-rtti -fno-threadsafe-statics")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread  -fno-strict-aliasing")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread  -fno-strict-aliasing -fno-exceptions -fno-rtti -fno-threadsafe-statics")
 elseif(OMR_TOOLCONFIG STREQUAL "xlc")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -qalias=noansi")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -qalias=noansi -qnortti -qnoeh -qsuppress=1540-1087:1540-1088:1540-1090")
     set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -qpic=large")
 endif()
+
+#TODO make conditional
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fgnu89-inline -fstack-protector")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector")
 
 if(OMR_ARCH_POWER)
     #TODO do based on toolchain stuff
