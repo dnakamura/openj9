@@ -173,6 +173,11 @@ ppc64le_linux:
 ppc64le_linux_cm:
   extends: ['ppc64le_linux', 'cmake']
 #========================================#
+# Linux PPCLE 64bits /w cmake
+#========================================#
+ppc64le_linux_cm:
+  extends: ['ppc64le_linux', 'cmake']
+#========================================#
 # Linux PPCLE 64bits Large Heap
 #========================================#
 ppc64le_linux_xl:
