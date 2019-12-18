@@ -50,6 +50,12 @@ target_link_libraries(j9vm_gc_glue
 	INTERFACE
 		j9vm_interface
 		j9vm_gc_includes
+
+		j9gcvlhgc
+		j9modronstandard
+		j9realtime
+		j9gcstats
+		j9util
 )
 target_include_directories(j9vm_gc_glue
 	INTERFACE
