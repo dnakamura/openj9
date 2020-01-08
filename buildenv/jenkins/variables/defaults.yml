@@ -247,6 +247,9 @@ ppc64_aix:
   excluded_tests:
     11:
       - special.system
+
+ppc64_aix_cm:
+  extends: ['ppc64_aix', 'cmake']
 #========================================#
 # Linux x86 64bits Compressed Pointers
 #========================================#
