@@ -425,7 +425,10 @@ def archive_diagnostics() {
         // Note: to preserve the files ACLs set _OS390_USTAR=Y env variable (see variable files)
         sh "find . -name 'core.*.dmp' -o -name 'javacore.*.txt' -o -name 'Snap.*.trc' -o -name 'jitdump.*.dmp' | sed 's#^./##' | pax -wzf ${DIAGNOSTICS_FILENAME}"
     } else {
-        sh "find . -name 'core.*.dmp' -o -name 'javacore.*.txt' -o -name 'Snap.*.trc' -o -name 'jitdump.*.dmp' | sed 's#^./##' | tar -zcvf ${DIAGNOSTICS_FILENAME} -T -"
+        //build/${RELEASE}
+
+        //sh "find . -name 'core.*.dmp' -o -name 'javacore.*.txt' -o -name 'Snap.*.trc' -o -name 'jitdump.*.dmp' | sed 's#^./##' | tar -zcvf ${DIAGNOSTICS_FILENAME} -T -"
+        sh "tar -zcf ${DIAGNOSTICS_FILENAME}  build/${RELEASE}/vm"
     }
     if (ARTIFACTORY_SERVER) {
         def uploadSpec = """{
