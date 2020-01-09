@@ -426,6 +426,9 @@ def archive_diagnostics() {
         sh "find . -name 'core.*.dmp' -o -name 'javacore.*.txt' -o -name 'Snap.*.trc' -o -name 'jitdump.*.dmp' | sed 's#^./##' | pax -wzf ${DIAGNOSTICS_FILENAME}"
     } else {
         sh "find . -name 'core.*.dmp' -o -name 'javacore.*.txt' -o -name 'Snap.*.trc' -o -name 'jitdump.*.dmp' | sed 's#^./##' | tar -zcvf ${DIAGNOSTICS_FILENAME} -T -"
+
+        //sh "find . -name 'core.*.dmp' -o -name 'javacore.*.txt' -o -name 'Snap.*.trc' -o -name 'jitdump.*.dmp' | sed 's#^./##' | tar -zcvf ${DIAGNOSTICS_FILENAME} -T -"
+        sh "tar -zcvf ${DIAGNOSTICS_FILENAME}  build/${RELEASE}/vm"
     }
     if (ARTIFACTORY_SERVER) {
         def uploadSpec = """{
