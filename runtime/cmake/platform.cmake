@@ -21,7 +21,7 @@
 ################################################################################
 
 include(OmrPlatform)
-set(OMR_PLATFORM_COMPILE_OPTIONS "-O3")
+list(APPEND OMR_PLATFORM_COMPILE_OPTIONS "-O3")
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
