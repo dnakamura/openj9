@@ -27,7 +27,7 @@ add_executable(constgen
 target_link_libraries(constgen 
 	PRIVATE
 		j9vm_interface
-		omrsig_compat
+		omrsig
 
 		omrport
 		j9thr
