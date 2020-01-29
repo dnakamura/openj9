@@ -85,7 +85,7 @@ function(add_library target)
     _add_library(${ARGV})
 
     # We only need to split debug info on shared libraries
-    if("SHARED" IN_LIST ARGV)
+    if(("SHARED" IN_LIST ARGV) AND (NOT "IMPORTED" IN_LIST ARGV))
         omr_split_debug("${target}")
     endif()
 endfunction()
@@ -94,5 +94,10 @@ function(add_executable target)
     # Call the real add_executable
     _add_executable(${ARGV})
 
-    omr_split_debug("${target}")
+    if(NOT (
+        ("ALIAS" IN_LIST ARGV) OR
+        ("IMPORTED" IN_LIST ARGV)
+    ))
+        omr_split_debug("${target}")
+    endif()
 endfunction()
