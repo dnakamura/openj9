@@ -38,6 +38,12 @@ set(J9VM_JIT_TRANSACTION_DIAGNOSTIC_THREAD_BLOCK ON CACHE BOOL "")
 set(J9VM_INTERP_ATOMIC_FREE_JNI ON CACHE BOOL "")
 set(J9VM_INTERP_ATOMIC_FREE_JNI_USES_FLUSH ON CACHE BOOL "")
 set(J9VM_INTERP_TWO_PASS_EXCLUSIVE ON CACHE BOOL "")
+set(J9VM_GC_TLH_PREFETCH_FTA ON CACHE BOOL "")
+set(J9VM_GC_SUBPOOLS_ALIAS ON CACHE BOOL "")
+set(OMR_GC_CONCURRENT_SCAVENGER ON CACHE BOOL "")
+set(OMR_GC_HEAP_CARD_TABLE ON CACHE BOOL "")
+
+
 
 # Note: In CMake, 'set's on cache variables only apply if the cache variable
 # is not already set. Thus any cache varaibles set in this file, override
