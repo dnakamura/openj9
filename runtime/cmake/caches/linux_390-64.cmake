@@ -42,7 +42,7 @@ set(J9VM_GC_TLH_PREFETCH_FTA ON CACHE BOOL "")
 set(J9VM_GC_SUBPOOLS_ALIAS ON CACHE BOOL "")
 set(OMR_GC_CONCURRENT_SCAVENGER ON CACHE BOOL "")
 set(OMR_GC_HEAP_CARD_TABLE ON CACHE BOOL "")
-
+set(OMRPORT_OMRSIG_SUPPORT ON CACHE BOOL "")
 
 
 # Note: In CMake, 'set's on cache variables only apply if the cache variable
