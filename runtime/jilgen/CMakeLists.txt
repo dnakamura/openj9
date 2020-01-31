@@ -31,6 +31,9 @@ target_link_libraries(constgen
 		omrport
 		j9thr
 )
+if(OMRPORT_OMRSIG_SUPPORT)
+	target_link_libraries(constgen PRIVATE omrsig)
+endif()
 
 # Add target to generate jilconsts.inc/jilvalues.m4 from the constgen program
 add_custom_command(
