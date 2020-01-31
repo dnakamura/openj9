@@ -100,6 +100,7 @@ SPECS = ['ppc64_aix'      : CURRENT_RELEASES,
          'x86-64_mac'     : CURRENT_RELEASES,
          'x86-32_windows' : ['8'],
          'x86-64_windows' : CURRENT_RELEASES,
+         'x86-64_windows_cm' : ['8','11'],
          'x86-64_windows_xl' : CURRENT_RELEASES,
          'aarch64_linux' : ['11'],
          'aarch64_linux_xl' : ['11']]

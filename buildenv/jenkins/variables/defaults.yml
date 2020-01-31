@@ -335,6 +335,8 @@ x86-64_windows:
   excluded_tests:
     11:
       - special.system
+x86-64_windows_cm:
+  extends: ['x86-64_windows','cmake']
 #========================================#
 # Windows x86 64bits Large Heap
 #========================================#
