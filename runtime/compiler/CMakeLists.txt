@@ -239,7 +239,7 @@ set(J9_CXXFLAGS
 )
 
 if(OMR_TOOLCONFIG STREQUAL "gnu")
-	list(APPEND J9_CXXFLAGS "-gnu89")
+	list(APPEND J9_CXXFLAGS "-std=gnu89")
 endif()
 
 if(OMR_OS_LINUX OR OMR_OS_OSX)
