@@ -192,6 +192,10 @@ get_target_property(compiler_defines j9vm_compiler_defines INTERFACE_COMPILE_DEF
 # Extra defines not provided by the create_omr_compiler_library call
 set(TARGET_DEFINES
 	J9_PROJECT_SPECIFIC
+	MAXMOVE
+	FULL_ANSI
+	J9VM_TIERED_CODE_CACE
+	COMPRESS_AOT_DATA
 	${compiler_defines}
 )
 
@@ -222,6 +226,7 @@ set(J9_INCLUDES
 	${CMAKE_CURRENT_BINARY_DIR}
 )
 
+list(REMOVE_ITEM OMR_PLATFORM_CXX_COMPILE_OPTIONS "-std=c++0x")
 # Platform specific list of flags, derived directly from the
 # Makefiles
 set(J9_SHAREDFLAGS
@@ -232,9 +237,13 @@ set(J9_CXXFLAGS
 	${OMR_PLATFORM_COMPILE_OPTIONS}
 	${OMR_PLATFORM_CXX_COMPILE_OPTIONS}
 )
+
+if(OMR_TOOLCONFIG STREQUAL "gnu")
+	list(APPEND J9_CXXFLAGS "-gnu89")
+endif()
+
 if(OMR_OS_LINUX OR OMR_OS_OSX)
-	set(J9_SHAREDFLAGS
-		${J9_SHAREDFLAGS}
+	list(APPEND J9_SHAREDFLAGS
 		-fno-strict-aliasing
 		-Wno-deprecated
 		-Wno-enum-compare

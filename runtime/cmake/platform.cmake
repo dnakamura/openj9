@@ -23,7 +23,25 @@
 include(OmrPlatform)
 
 #hack o3
-list(APPEND OMR_PLATFORM_COMPILE_OPTIONS "-O3")
+
+if(OMR_TOOLCONFIG STREQUAL "gnu")
+    list(APPEND OMR_PLATFORM_COMPILE_OPTIONS
+        "-O3"
+        "-fno-strict-aliasing"
+        
+    )
+    list(APPEND OMR_PLATFORM_CXX_COMPILE_OPTIONS
+        "-fno-rtti"
+        "-fno-threadsafe-statics"
+    )
+    if(OMR_ARCH_S390)
+        list(APPEND OMR_PLATFORM_COMPILE_OPTIONS
+            "-mtune=z10"
+            #"-march=z9-109" we get this from omr
+            "-mzarch"
+        )
+    endif()
+endif()
 
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
@@ -41,7 +59,7 @@ endif()
 omr_platform_global_setup()
 
 if(OMR_TOOLCONFIG STREQUAL "gnu")
-    set(CMAKE_CXX_FLAGS " -g -fno-rtti -fno-exceptions ${CMAKE_CXX_FLAGS}")
+    set(CMAKE_CXX_FLAGS " -g -fno-exceptions ${CMAKE_CXX_FLAGS}")
     set(CMAKE_C_FLAGS "-g ${CMAKE_C_FLAGS}")
 
     # Raise an error if a shared library has any unresolved symbols.
@@ -49,8 +67,8 @@ if(OMR_TOOLCONFIG STREQUAL "gnu")
     if(NOT OMR_OS_OSX)
         set(CMAKE_SHARED_LINKER_FLAGS "-Wl,-z,defs ${CMAKE_SHARED_LINKER_FLAGS}")
     endif()
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread -fno-strict-aliasing")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread  -fno-strict-aliasing -fno-exceptions -fno-rtti -fno-threadsafe-statics")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -fno-exceptions")
 elseif(OMR_TOOLCONFIG STREQUAL "xlc")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -qalias=noansi")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -qalias=noansi -qnortti -qnoeh -qsuppress=1540-1087:1540-1088:1540-1090")
@@ -76,7 +94,7 @@ if(NOT OMR_OS_OSX)
     add_definitions(-DIPv6_FUNCTION_SUPPORT)
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fgnu89-inline -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
 
 # Hook add_library and add_executable so that we can add rules to strip debug info
