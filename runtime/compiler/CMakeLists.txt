@@ -56,6 +56,8 @@ if((OMR_TOOLCONFIG STREQUAL "gnu") AND (NOT OMR_OS_OSX))
 	check_cxx_compiler_flag("-static-libstdc++" ALLOWS_STATIC_LIBCPP)
 endif()
 
+list(REMOVE_ITEM TR_COMPILE_OPTIONS "-qarch=pwr7")
+list(APPEND TR_COMPILE_OPTIONS "-qarch=ppc64grsq")
 # This target is created so that various subdirectories can add dependencies to it.
 # The j9jit target will then depend on it, propagating the dependencies.
 # This is required because at the time we include the subdirectories, the j9jit target

@@ -22,6 +22,7 @@
 
 include(OmrPlatform)
 list(APPEND OMR_PLATFORM_COMPILE_OPTIONS "-O3")
+list(APPEND OMR_PLATFORM_CXX_COMPILE_OPTIONS "-qnortti")
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
@@ -50,7 +51,7 @@ if(OMR_TOOLCONFIG STREQUAL "gnu")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -fno-strict-aliasing -fno-exceptions -fno-rtti -fno-threadsafe-statics")
 elseif(OMR_TOOLCONFIG STREQUAL "xlc")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -g -qalias=noansi")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -g -qalias=noansi -qnortti -qnoeh -qsuppress=1540-1087:1540-1088:1540-1090")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -g -qalias=noansi -qnoeh -qsuppress=1540-1087:1540-1088:1540-1090")
     set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} -qpic=large")
 endif()
 
@@ -67,6 +68,8 @@ endif()
 if(OMR_OS_AIX)
     # Override cmake default of ".a" for shared libs on aix
     set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+    set(CMAKE_C_COMPILE_OPTIONS_PIC "")
+    set(CMAKE_CXX_COMPILE_OPTIONS_PIC "")
 endif()
 
 if(NOT OMR_OS_OSX)
