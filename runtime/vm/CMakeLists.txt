@@ -125,6 +125,25 @@ add_library(j9vm SHARED
 	${CMAKE_CURRENT_BINARY_DIR}/ut_j9vm.c
 )
 
+if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
+	enable_language(J9VM_C_ALT)
+	set_source_files_properties(
+		BytecodeInterpreter.cpp
+		DebugBytecodeInterpreter.cpp
+
+		PROPERTIES
+		LANGUAGE "J9VM_C_ALT"
+	)
+	#OMR_PLATFORM_DEFINITIONS
+
+	set(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+
+	)
+	omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+		${OMR_PLATFORM_DEFINITIONS}
+	)
+	
+endif()
 
 if(OMR_ARCH_X86)
 	j9vm_gen_asm(xcinterp.m4)
