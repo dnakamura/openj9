@@ -136,13 +136,34 @@ if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
 	)
 	#OMR_PLATFORM_DEFINITIONS
 
-	set(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+	omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+		-O3
+		-fno-rtti
+		-fno-threadsafe-statics
+		-fno-strict-aliasing
+		-fno-exceptions
+		-fno-asynchronous-unwind-tables
 
+		#TODO if vs 12+
+		-std=c++0x
+		-D_CRT_SUPPRESS_RESTRICT 
+		-DVS12AndHigher
 	)
+
+	if(OMR_ENV_DATA64)
+		omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+			-D_M_X64
+		)
+	else()
+		omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+			-D_M_IX86
+		)
+	endif()
 	omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
 		${OMR_PLATFORM_DEFINITIONS}
 	)
 	
+
 endif()
 
 if(OMR_ARCH_X86)
