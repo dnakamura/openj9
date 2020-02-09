@@ -164,7 +164,7 @@ if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
 		SOURCE
 			cnathelp.cpp
 			SharedService.c
-		APPEND_PROPERTY COMPILE_FLAGS "/GS-"
+		APPEND PROPERTY COMPILE_FLAGS "/GS-"
 	)
 	set_source_files_properties(cnathelp.cpp SharedService.c)
 endif()
