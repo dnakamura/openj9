@@ -136,7 +136,7 @@ if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
 	)
 	#OMR_PLATFORM_DEFINITIONS
 
-	omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+	omr_append_flags(CMAKE_J9VM_C_ALT_FLAGS
 		-O3
 		-fno-rtti
 		-fno-threadsafe-statics
@@ -150,20 +150,23 @@ if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
 		-DVS12AndHigher
 	)
 
-	if(OMR_ENV_DATA64)
-		omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
-			-D_M_X64
-		)
-	else()
-		omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
-			-D_M_IX86
-		)
-	endif()
-	omr_append_flags(CMAKE_J9VM_C_ALT_COMPILE_FLAGS
+
+	omr_append_flags(CMAKE_J9VM_C_ALT_FLAGS
 		${OMR_PLATFORM_DEFINITIONS}
 	)
 	
-	message(STATUS "DEBUG flags = ${CMAKE_J9VM_C_ALT_COMPILE_FLAGS}")
+	message(STATUS "DEBUG flags = ${CMAKE_J9VM_C_ALT_FLAGS}")
+endif()
+
+#JIT helper methods require us to disable buffer security checks on Windows
+if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
+	set_property(
+		SOURCE
+			cnathelp.cpp
+			SharedService.c
+		APPEND_PROPERTY COMPILE_FLAGS "/GS-"
+	)
+	set_source_files_properties(cnathelp.cpp SharedService.c)
 endif()
 
 if(OMR_ARCH_X86)
