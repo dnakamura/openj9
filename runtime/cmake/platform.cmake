@@ -21,6 +21,8 @@
 ################################################################################
 
 include(OmrPlatform)
+set(CMAKE_C_FLAGS_DEBUG "/MD")
+set(CMAKE_CXX_FLAGS_DEBUG "/MD")
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
@@ -34,6 +36,18 @@ if(OMR_OS_WINDOWS)
         )
     endif()
 endif()
+
+list(APPEND OMR_PLATFORM_COMPILE_OPTIONS
+    /Ox /Zi
+)
+##if(OMR_ENV_DATA64)
+#TODO set SAFESEH on 32 bit
+list(APPEND OMR_PLATFORM_EXE_LINKER_OPTIONS
+    /debug  /opt:icf /opt:ref
+)
+list(APPEND OMR_PLATFORM_SHARED_LINKER_OPTIONS
+    /debug  /opt:icf /opt:ref
+)
 omr_platform_global_setup()
 
 if(OMR_TOOLCONFIG STREQUAL "gnu")
