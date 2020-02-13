@@ -21,8 +21,20 @@
 ################################################################################
 
 include(OmrPlatform)
-set(CMAKE_C_FLAGS_DEBUG "/MD")
-set(CMAKE_CXX_FLAGS_DEBUG "/MD")
+message(STATUS "debug flags c ${CMAKE_C_FLAGS_DEBUG}")
+set(CMAKE_C_FLAGS_DEBUG "/MDd")
+set(CMAKE_CXX_FLAGS_DEBUG "/MDd  ")
+
+omr_remove_flags(CMAKE_CXX_FLAGS_RELWITHDEBINFO 
+/O2 /Ob1 /DNDEBUG
+)
+omr_remove_flags(CMAKE_C_FLAGS_RELWITHDEBINFO
+/O2 /Ob1 /DNDEBUG
+)
+
+omr_remove_flags(CMAKE_CXX_FLAGS
+/O2 /Ob1 /DNDEBUG
+)
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
@@ -38,12 +50,13 @@ if(OMR_OS_WINDOWS)
 endif()
 
 list(APPEND OMR_PLATFORM_COMPILE_OPTIONS
-    /Ox /Zi
+    /Ox 
+    /Zi
 )
 ##if(OMR_ENV_DATA64)
 #TODO set SAFESEH on 32 bit
 list(APPEND OMR_PLATFORM_EXE_LINKER_OPTIONS
-    /debug  /opt:icf /opt:ref
+   /debug  /opt:icf /opt:ref
 )
 list(APPEND OMR_PLATFORM_SHARED_LINKER_OPTIONS
     /debug  /opt:icf /opt:ref
@@ -86,5 +99,5 @@ if(NOT OMR_OS_OSX)
     add_definitions(-DIPv6_FUNCTION_SUPPORT)
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
