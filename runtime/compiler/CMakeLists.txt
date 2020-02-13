@@ -226,12 +226,13 @@ set(J9_INCLUDES
 	${CMAKE_CURRENT_BINARY_DIR}
 )
 
-list(REMOVE_ITEM OMR_PLATFORM_CXX_COMPILE_OPTIONS "-std=c++0x")
+#list(REMOVE_ITEM OMR_PLATFORM_CXX_COMPILE_OPTIONS "-std=c++0x")
 # Platform specific list of flags, derived directly from the
 # Makefiles
 set(J9_SHAREDFLAGS
 	${OMR_PLATFORM_COMPILE_OPTIONS}
 	${OMR_PLATFORM_C_COMPILE_OPTIONS}
+	-fstack-protector
 )
 set(J9_CXXFLAGS
 	${OMR_PLATFORM_COMPILE_OPTIONS}
@@ -239,7 +240,7 @@ set(J9_CXXFLAGS
 )
 
 if(OMR_TOOLCONFIG STREQUAL "gnu")
-	list(APPEND J9_CXXFLAGS "-std=gnu89")
+	#list(APPEND J9_CXXFLAGS "-std=gnu89")
 endif()
 
 if(OMR_OS_LINUX OR OMR_OS_OSX)
