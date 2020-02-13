@@ -43,6 +43,11 @@ if(OMR_TOOLCONFIG STREQUAL "gnu")
     endif()
 endif()
 
+list(APPEND OMR_PLATFORM_DEFINITIONS
+    -D_LONG_LONG
+    -DJ9VM_TIERED_CODE_CACHE
+    -DTR_HOST_S390
+)
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
