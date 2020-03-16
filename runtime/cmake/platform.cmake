@@ -23,6 +23,7 @@
 include(OmrPlatform)
 # perf hackery
 list(APPEND OMR_PLATFORM_COMPILE_OPTIONS "-O3")
+if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
         -DWIN32
         -D_WIN32
