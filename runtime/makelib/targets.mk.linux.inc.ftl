@@ -367,8 +367,8 @@ endif
      CPPFLAGS += $(SYSROOT_CFLAGS)
   </#if>
 <#elseif uma.spec.processor.s390>
-  CFLAGS += $(J9M31) -DS390 -D_LONG_LONG -DJ9VM_TIERED_CODE_CACHE -fno-strict-aliasing
-  CXXFLAGS += $(J9M31) -DS390 -D_LONG_LONG -DJ9VM_TIERED_CODE_CACHE -fno-strict-aliasing
+  CFLAGS += $(J9M31) -fstack-protector -DS390 -D_LONG_LONG -DJ9VM_TIERED_CODE_CACHE -fno-strict-aliasing
+  CXXFLAGS += $(J9M31) -fstack-protector -DS390 -D_LONG_LONG -DJ9VM_TIERED_CODE_CACHE -fno-strict-aliasing
   CPPFLAGS += -DS390 -D_LONG_LONG -DJ9VM_TIERED_CODE_CACHE
   ifdef j9vm_env_data64
     CFLAGS += -DS39064

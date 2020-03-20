@@ -28,7 +28,7 @@ if(OMR_TOOLCONFIG STREQUAL "gnu")
     list(APPEND OMR_PLATFORM_COMPILE_OPTIONS
         "-O3"
         "-fno-strict-aliasing"
-        
+        "-fstack-protector"
     )
     list(APPEND OMR_PLATFORM_CXX_COMPILE_OPTIONS
         "-fno-rtti"
