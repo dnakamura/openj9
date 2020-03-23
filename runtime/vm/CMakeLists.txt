@@ -148,6 +148,7 @@ if(OMR_OS_WINDOWS AND (OMR_TOOLCONFIG STREQUAL "msvc"))
 		-std=c++0x
 		-D_CRT_SUPPRESS_RESTRICT 
 		-DVS12AndHigher
+		-march=pentium4 -mtune=prescott -msse2
 	)
 
 
