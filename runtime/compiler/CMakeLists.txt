@@ -380,6 +380,7 @@ set_source_files_properties(
 	GENERATED TRUE
 )
 
+target_include_directories(j9jit PRIVATE ${OmrCuda_INCLUDE_DIRS})
 if(OMR_OS_LINUX)
 	set_property(TARGET j9jit APPEND_STRING PROPERTY
 		LINK_FLAGS "  -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/build/scripts/j9jit.linux.exp")
