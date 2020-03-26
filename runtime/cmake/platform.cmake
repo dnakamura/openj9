@@ -35,6 +35,9 @@ omr_remove_flags(CMAKE_C_FLAGS_RELWITHDEBINFO
 omr_remove_flags(CMAKE_CXX_FLAGS
 /O2 /Ob1 /DNDEBUG
 )
+
+list(REMOVE_ITEM OMR_PLATFORM_COMPILE_OPTIONS /GR-)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR-")
 # Note: we need to inject WIN32 et al, as OMR no longer uses them
 if(OMR_OS_WINDOWS)
     list(APPEND OMR_PLATFORM_DEFINITIONS
