@@ -22,6 +22,8 @@
 
 cmake_minimum_required(VERSION 3.4 FATAL_ERROR)
 
+set(J9VM_OPT_CUDA ON CACHE INTERNAL "")
+set(OMR_OPT_CUDA ON CACHE INTERNAL "" )
 ###
 ### Basic housekeeping stuff
 ### i.e. things which need to be set up before including J9vmPlatform
