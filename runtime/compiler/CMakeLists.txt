@@ -399,9 +399,10 @@ set_property(TARGET j9jit PROPERTY LINKER_LANGUAGE CXX)
 #if(OMR_OPT_CUDA)
 	target_include_directories(j9jit
 		PRIVATE
-			${OmrCuda_INCLUDE_DIRS}
+		/cygdrive/c/progra~1/nvidia~2/cuda/v9.0/include
 	)
 #endif()
+message(STATUS "DEBUG added cuda includes")
 
 # Note ddrgen can't handle the templated symbols used in the jit
 target_enable_ddr(j9jit NO_DEBUG_INFO)
