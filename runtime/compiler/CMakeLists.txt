@@ -400,6 +400,7 @@ set_property(TARGET j9jit PROPERTY LINKER_LANGUAGE CXX)
 	target_include_directories(j9jit
 		PRIVATE
 		/cygdrive/c/progra~1/nvidia~2/cuda/v9.0/include
+		/cygdrive/c/progra~1/nvidia~2/cuda/v9.0/nvvm/include
 	)
 #endif()
 message(STATUS "DEBUG added cuda includes")
