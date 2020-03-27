@@ -396,6 +396,13 @@ if((OMR_TOOLCONFIG STREQUAL "gnu") AND ALLOWS_STATIC_LIBCPP)
 endif()
 set_property(TARGET j9jit PROPERTY LINKER_LANGUAGE CXX)
 
+#if(OMR_OPT_CUDA)
+	target_include_directories(j9jit
+		PRIVATE
+			${OmrCuda_INCLUDE_DIRS}
+	)
+#endif()
+
 # Note ddrgen can't handle the templated symbols used in the jit
 target_enable_ddr(j9jit NO_DEBUG_INFO)
 file(GLOB_RECURSE headers
