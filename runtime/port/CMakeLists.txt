@@ -196,6 +196,15 @@ target_include_directories(j9prt
 		${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+if(OMR_OS_LINUX)
+	if((OMR_ARCH_RISCV) OR (OMR_ARCH_X86 AND OMR_ENV_DATA64))
+		set_source_files_properties(unix/j9process.c
+			COMPILE_FLAGS
+			-Wno-unused-result
+		)
+	endif()
+endif()
+
 omr_add_exports(j9prt
 	j9port_allocate_library
 	j9port_create_library
