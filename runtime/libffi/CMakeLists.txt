@@ -21,6 +21,7 @@
 ################################################################################
 
 set(OMR_ENHANCED_WARNINGS OFF)
+set(OMR_WARNINGS_AS_ERRORS OFF)
 
 j9vm_add_library(ffi STATIC
 	closures.c
