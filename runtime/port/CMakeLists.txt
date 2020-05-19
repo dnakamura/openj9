@@ -29,6 +29,8 @@
 # The final step is where the differences are. While vpaths under make handle everything automatically,
 # we have to actually resolve the full paths to the source files (via omr_find_files and output in resolvedPaths)
 
+set(OMR_ENHANCED_WARNINGS OFF)
+
 add_tracegen(common/j9prt.tdf)
 j9vm_add_library(j9prt SHARED
 	${CMAKE_CURRENT_BINARY_DIR}/ut_j9prt.c
