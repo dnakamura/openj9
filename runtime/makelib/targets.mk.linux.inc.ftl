@@ -479,8 +479,13 @@ endif
 ifdef UMA_ENABLE_ALL_WARNINGS
   ifndef UMA_SUPPRESS_ALL_WARNINGS
     <#if uma.spec.processor.ppc>
-      CFLAGS +=
-      CXXFLAGS +=
+      <#if uma.spec.flags.env_gcc.enabled>
+        CFLAGS += -Wall
+        CXXFLAGS += -Wall -Wno-non-virtual-dtor
+      <#else>
+        CFLAGS +=
+        CXXFLAGS +=
+      </#if>
       ifdef USE_PPC_GCC
         PPC_GCC_CXXFLAGS += -Wall -Wno-non-virtual-dtor
       endif
