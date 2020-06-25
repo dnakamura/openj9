@@ -79,12 +79,12 @@ elseif(OMR_ARCH_S390)
 		znathelp.s
 	)
 elseif(OMR_ARCH_ARM)
-	jvm_gen_asm(armnathelp.m4)
+	j9vm_gen_asm(armnathelp.m4)
 	target_sources(j9codert_vm PRIVATE
 		armnathelp.s
 	)
 elseif(OMR_ARCH_AARCH64)
-	jvm_gen_asm(arm64nathelp.m4)
+	j9vm_gen_asm(arm64nathelp.m4)
 	target_sources(j9codert_vm PRIVATE
 		arm64nathelp.s
 	)
