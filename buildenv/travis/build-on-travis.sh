@@ -95,7 +95,7 @@ if test "x$RUN_BUILD" = "xyes" ; then
 
   # Limit number of jobs to work around g++ internal compiler error.
   bash configure --disable-warnings-as-errors --enable-ccache --with-cmake --with-jobs=$MAKE_JOBS --with-num-cores=$MAKE_JOBS
-  make images EXTRA_CMAKE_ARGS="-DOMR_WARNINGS_AS_ERRORS=FALSE"
+  make images
   # Minimal sniff test - ensure java -version works.
   ./build/linux-x86_64-normal-server-release/images/jdk/bin/java -version
 fi
