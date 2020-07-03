@@ -104,7 +104,7 @@ else
  # xlclang options
   CFLAGS += -qxlcompatmacros
 endif
-CFLAGS += -qlanglvl=extended -qarch=ppc -qalias=noansi -qxflag=LTOL:LTOL0 -qsuppress=1506-1108
+CFLAGS += -qlanglvl=extended -qarch=ppc -qalias=noansi -qxflag=LTOL:LTOL0 -qsuppress=1506-1108:1506-995
 CFLAGS += -D_XOPEN_SOURCE_EXTENDED=1 -D_ALL_SOURCE -DRS6000 -DAIXPPC -D_LARGE_FILES
 
 ifdef I5_VERSION

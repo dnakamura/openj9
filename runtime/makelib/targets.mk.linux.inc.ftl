@@ -331,7 +331,7 @@ endif
       CPPFLAGS += -m32
     endif
   <#else>
-    CFLAGS += -qalias=noansi -qxflag=LTOL:LTOL0 -qxflag=selinux
+    CFLAGS += -qalias=noansi -qxflag=LTOL:LTOL0 -qxflag=selinux -qsupress=1506-995
     CXXFLAGS += -qalias=noansi -qxflag=LTOL:LTOL0 -qxflag=selinux -qsuppress=1540-1087:1540-1088:1540-1090
     ifdef j9vm_env_data64
     <#if uma.spec.flags.env_littleEndian.enabled>
