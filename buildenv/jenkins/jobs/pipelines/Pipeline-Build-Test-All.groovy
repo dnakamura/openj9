@@ -84,7 +84,9 @@
 CURRENT_RELEASES = ['8', '11', '14', '15', 'next']
 
 SPECS = ['ppc64_aix'      : CURRENT_RELEASES,
+         'ppc64_aix_cm'   : CURRENT_RELEASES,
          'ppc64_aix_xl'   : CURRENT_RELEASES,
+         'ppc64_aix_xl_cm': CURRENT_RELEASES,
          'ppc64le_linux'  : CURRENT_RELEASES,
          'ppc64le_linux_cm' : CURRENT_RELEASES - '11',
          'ppc64le_linux_uma' : ['11'],
