@@ -363,6 +363,19 @@ if(OMR_DDR)
 		${CMAKE_CURRENT_BINARY_DIR}/omr/gc
 		${CMAKE_CURRENT_BINARY_DIR}/omr
 	)
+
+	# Specify the directories which shouldn't be searched for debug info.
+	# Currently this is only used on zos, and has no effect elsewhere
+	set_property(TARGET j9ddr PROPERTY DDR_OBJECT_EXCLUDES
+		bcutil/test/
+		compiler/
+		gc_tests/
+		jilgen/
+		omr/
+		runtimetools/
+		tests/
+	)
+
 endif()
 
 # Due to CMake technical limitations we can't properly propagate dependencies
