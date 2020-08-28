@@ -20,29 +20,15 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 ################################################################################
 
-# Note: we need to inject WIN32 et al, as OMR no longer uses them
+set(CMAKE_J9VM_C_ALT_COMPILER_LIST clang)
+set(CMAKE_J9VM_C_ALT_COMPILER_ENV_VAR J9ALTC)
+find_program(CMAKE_J9VM_C_ALT_COMPILER "clang")
 
-list(APPEND OMR_PLATFORM_DEFINITIONS
-    -DWIN32
-    -D_WIN32
-)
-if(OMR_ENV_DATA64)
-    list(APPEND OMR_PLATFORM_DEFINITIONS
-        -DWIN64
-        -D_WIN64
-    )
-endif()
+configure_file(${CMAKE_CURRENT_LIST_DIR}/CMakeJ9VM_C_ALTCompiler.cmake.in
+${CMAKE_PLATFORM_INFO_DIR}/CMakeJ9VM_C_ALTCompiler.cmake @ONLY)
 
-# Set flags we use to build the interpreter
-omr_stringify(CMAKE_J9VM_C_ALT_FLAGS
-    -O3
-    -fno-rtti
-    -fno-threadsafe-statics
-    -fno-strict-aliasing
-    -fno-exceptions
-    -fno-asynchronous-unwind-tables
-    -std=c++0x
-    -D_CRT_SUPPRESS_RESTRICT
-    -DVS12AndHigher
-    ${OMR_PLATFORM_DEFINITIONS}
-)
+set(CMAKE_J9VM_C_ALT_DEFINE_FLAG -D)
+set(CMAKE_INCLUDE_FLAG_J9VM_C_ALT -I)
+set(CMAKE_J9VM_C_ALT_OUTPUT_EXTENSION .o)
+
+set(CMAKE_J9VM_C_ALT_COMPILE_OBJECT "<CMAKE_J9VM_C_ALT_COMPILER> <DEFINES> <INCLUDES> <FLAGS> -o <OBJECT>  -c <SOURCE>")

@@ -20,29 +20,4 @@
 # SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
 ################################################################################
 
-# Note: we need to inject WIN32 et al, as OMR no longer uses them
-
-list(APPEND OMR_PLATFORM_DEFINITIONS
-    -DWIN32
-    -D_WIN32
-)
-if(OMR_ENV_DATA64)
-    list(APPEND OMR_PLATFORM_DEFINITIONS
-        -DWIN64
-        -D_WIN64
-    )
-endif()
-
-# Set flags we use to build the interpreter
-omr_stringify(CMAKE_J9VM_C_ALT_FLAGS
-    -O3
-    -fno-rtti
-    -fno-threadsafe-statics
-    -fno-strict-aliasing
-    -fno-exceptions
-    -fno-asynchronous-unwind-tables
-    -std=c++0x
-    -D_CRT_SUPPRESS_RESTRICT
-    -DVS12AndHigher
-    ${OMR_PLATFORM_DEFINITIONS}
-)
+set(CMAKE_J9VM_C_ALT_COMPILER_WORKS 1 CACHE INTERNAL "")
