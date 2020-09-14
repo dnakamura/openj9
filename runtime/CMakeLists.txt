@@ -352,6 +352,7 @@ if(OMR_DDR)
 		${CMAKE_CURRENT_BINARY_DIR}/omr/gc
 		${CMAKE_CURRENT_BINARY_DIR}/omr
 	)
+	target_link_libraries(omr_ddrgen PRIVATE "-Wl,-bnolibpath")
 endif()
 
 # Due to CMake technical limitations we can't properly propagate dependencies
