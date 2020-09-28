@@ -137,9 +137,10 @@ add_custom_target(j9vm_hookgen
 )
 
 # Generate NLS headers
+file(GLOB_RECURSE nls_files "${CMAKE_CURRENT_SOURCE_DIR}/nls/*.nls")
 add_custom_command(
 	OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/java.properties"
-	DEPENDS j9nls
+	DEPENDS j9nls ${nls_files}
 	COMMAND "${Java_JAVA_EXECUTABLE}" -cp "$<TARGET_PROPERTY:j9nls,JAR_FILE>" com.ibm.oti.NLSTool.J9NLS -source "${CMAKE_CURRENT_SOURCE_DIR}"
 	VERBATIM
 )
