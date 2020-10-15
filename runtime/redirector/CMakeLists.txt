@@ -37,8 +37,10 @@ j9vm_add_library(jvm_redirect
 target_link_libraries(jvm_redirect
 	PRIVATE
 		j9vm_interface
+		$<TARGET_FILE:omrutil>
 		${CMAKE_DL_LIBS}
 )
+add_dependencies(jvm_redirect omrutil)
 target_include_directories(jvm_redirect
 	PRIVATE
 		"${j9vm_SOURCE_DIR}/j9vm"

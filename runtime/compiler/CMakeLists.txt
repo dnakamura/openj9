@@ -275,7 +275,8 @@ elseif(OMR_OS_AIX)
 		set(J9_SHAREDFLAGS -q32)
 	endif()
 else()
-	message(SEND_ERROR "unsupported platform")
+	#TODO: fixme
+	#message(SEND_ERROR "unsupported platform")
 endif()
 
 omr_stringify(J9_CFLAGS_STR ${J9_CFLAGS} ${J9_SHAREDFLAGS})
