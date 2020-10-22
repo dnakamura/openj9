@@ -319,9 +319,10 @@ LIBCDEFS := $(word 1,$(wildcard $(foreach d,$(TPF_ROOT),$d/base/lib/libCDEFSFORA
 # compilation rule for C files.
 %$(UMA_DOT_O) : %.c
 <#if uma.spec.flags.opt_useOmrDdr.enabled>
-	$(CC) $(CFLAGS) -Wc,debug -c -o $@ $< > /dev/null
-</#if>
+	$(CC) $(CFLAGS) -Wc,"debug(nohook),xplink(noback)" -c -o $@ $< > $*.asmlist
+<#else>
 	$(CC) $(CFLAGS) -c -o $@ $< > $*.asmlist
+</#if>
 
 # compilation rule for metal-C files.
 %$(UMA_DOT_O) : %.mc
@@ -334,9 +335,10 @@ LIBCDEFS := $(word 1,$(wildcard $(foreach d,$(TPF_ROOT),$d/base/lib/libCDEFSFORA
 # compilation rule for C++ files.
 %$(UMA_DOT_O) : %.cpp
 <#if uma.spec.flags.opt_useOmrDdr.enabled>
-	$(CXX) $(CXXFLAGS) -Wc,debug -c -o $@ $< > /dev/null
-</#if>
+	$(CXX) $(CXXFLAGS) "-Wc,debug(level=1,nohook),xplink(noback)" -c -o $@ $< > $*.asmlist
+<#else>
 	$(CXX) $(CXXFLAGS) -c -o $@ $< > $*.asmlist
+</#if>
 <#else>
 
 # compilation rule for C files.
