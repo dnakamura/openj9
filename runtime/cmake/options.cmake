@@ -152,3 +152,12 @@ option(J9VM_PORT_RUNTIME_INSTRUMENTATION "Controls whether runtime instrumentati
 
 option(J9VM_RAS_DUMP_AGENTS "Support multiple dump agents, instead of just console dump.")
 option(J9VM_RAS_EYE_CATCHERS "Add eyecatcher blocks to key structures")
+
+if(J9VM_OPT_METHOD_HANDLE OR J9VM_OPT_OPENJDK_METHODHANDLE)
+    omr_assert(SEND_ERROR TEST J9VM_OPT_METHOD_HANDLE_COMMON MESSAGE "Method handle support requires J9VM_OPT_METHOD_HANDLE_COMMON")
+    if(J9VM_OPT_METHOD_HANDLE)
+        omr_assert(SEND_ERROR TEST NOT J9VM_OPT_OPENJDK_METHODHANDLE MESSAGE "J9VM_OPT_METHOD_HANDLE and J9VM_OPT_OPENJDK_METHODHANDLE can't be enabled at the same time.")
+    elseif(J9VM_OPT_OPENJDK_METHODHANDLE)
+        omr_assert(SEND_ERROR TEST NOT J9VM_OPT_METHODHANDLE MESSAGE "J9VM_OPT_METHOD_HANDLE and J9VM_OPT_OPENJDK_METHODHANDLE can't be enabled at the same time.")
+    endif()
+endif()
