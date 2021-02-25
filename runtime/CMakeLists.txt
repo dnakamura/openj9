@@ -151,7 +151,7 @@ file(MAKE_DIRECTORY "${J9VM_INCLUDE_DIR}")
 # On z/OS, some generated files must be converted to EBCDIC for consistency.
 # This macro is intended to be used as a replacement for add_custom_command
 # for those files.
-if(OMR_OS_ZOS)
+if( NOT OMR_OS_ZOS)
 	macro(add_custom_ascii_command)
 		set(options)
 		set(singleValueArgs OUTPUT WORKING_DIRECTORY)
