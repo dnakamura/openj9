@@ -70,8 +70,10 @@ if(OMR_ARCH_X86)
 			set(source_name win64)
 			set(preconf_dir ${CMAKE_CURRENT_SOURCE_DIR}/preconf/wa)
 		else()
+			omr_remove_flags(CMAKE_ASM_MASM_FLAGS "/W3" "-W3")
 			set(source_name win32)
 			set(preconf_dir ${CMAKE_CURRENT_SOURCE_DIR}/preconf/wi)
+
 		endif()
 
 		# We are assuming we are using an MSVC toolchain
