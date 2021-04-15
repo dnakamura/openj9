@@ -30,7 +30,7 @@
 #define STDC
 #endif
 
-#include "zlib.h"
+#include "j9zlib.h"
 
 #endif
 

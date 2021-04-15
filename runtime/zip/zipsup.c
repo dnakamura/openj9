@@ -41,7 +41,7 @@
 #define STDC
 #endif
 
-#include "zlib.h"
+#include "j9zlib.h"
 
 /* Globals for the zip library */
 int (*inflateInit2Func)(void*, int, const char*, int) = NULL;

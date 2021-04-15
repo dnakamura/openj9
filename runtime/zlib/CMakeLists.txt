@@ -74,6 +74,9 @@ omr_add_exports(j9zlib
 	j9zlib_zlibVersion
 )
 
+if(OMR_OS_ZOS)
+target_compile_definitions(j9zlib PRIVATE STDC)
+endif()
 install(
 	TARGETS j9zlib
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}
