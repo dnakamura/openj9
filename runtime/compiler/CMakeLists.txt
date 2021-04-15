@@ -351,6 +351,9 @@ elseif(OMR_OS_WINDOWS)
 elseif(OMR_OS_AIX)
 	set_property(TARGET j9jit APPEND_STRING PROPERTY
 		LINK_FLAGS " -Wl,-bE:${CMAKE_CURRENT_SOURCE_DIR}/build/scripts/j9jit.aix.exp")
+elseif(OMR_OS_ZOS)
+	# Make sure the EXPORTALL flag gets applied.
+	omr_process_exports(j9jit)
 endif()
 if((OMR_TOOLCONFIG STREQUAL "gnu") AND ALLOWS_STATIC_LIBCPP)
 	# We assume that if the compiler allows -static-libstdc++
