@@ -43,5 +43,10 @@ if(CMAKE_C_COMPILER_IS_XLCLANG)
 	list(APPEND OMR_PLATFORM_COMPILE_OPTIONS -fno-rtti)
 else()
 	# xlc/xlc++ options
+if(OMR_OS_ZOS)
+	list(APPEND OMR_PLATFORM_COMPILE_OPTIONS "-Wc,debug\\(nohook\\),xplink\\(noback\\)")
+
+else()
 	list(APPEND OMR_PLATFORM_COMPILE_OPTIONS -g)
+endif()
 endif()
