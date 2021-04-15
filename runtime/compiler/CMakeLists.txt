@@ -28,6 +28,12 @@ include(CheckCXXCompilerFlag)
 #
 # Longer term, this will of course have to collapse into the VM builds.
 
+list(REMOVE_ITEM OMR_PLATFORM_COMPILE_OPTIONS "-g" "-Wc,debug\\\(nohook\\\),xplink\\\(noback\\\)")
+list(REMOVE_ITEM OMR_PLATFORM_CXX_COMPILE_OPTIONS "-qnortti")
+#omr_remove_flags(OMR_PLATFORM_COMPILE_OPTIONS "-g")
+#omr_remove_flags(OMR_PLATFORM_C_COMPILE_OPTIONS "-g")
+#omr_remove_flags(OMR_PLATFORM_CXX_COMPILE_OPTIONS "-g")
+message(STATUS "DEBUG PLATFORM = ${OMR_PLATFORM_COMPILE_OPTIONS}")
 if(OMR_ARCH_X86)
 	# On windows, the proper binary format is not auto detected
 	if(OMR_OS_WINDOWS)
@@ -190,6 +196,9 @@ get_target_property(compiler_defines j9vm_compiler_defines INTERFACE_COMPILE_DEF
 set(TARGET_DEFINES
 	J9_PROJECT_SPECIFIC
 	${compiler_defines}
+J9VM_TIERED_CODE_CACHE
+COMPRESS_AOT_DATA
+MAXMOVE
 )
 
 # When VM is built with CMake, we should just use the
@@ -371,6 +380,10 @@ ddr_add_headers(j9jit
 )
 ddr_set_add_targets(omrddr j9jit)
 
+if(OMR_OS_ZOS)
+	omr_process_exports(j9jit)
+target_link_libraries(j9jit  PRIVATE zz)
+endif()
 install(
 	TARGETS j9jit
 	LIBRARY DESTINATION ${j9vm_SOURCE_DIR}
