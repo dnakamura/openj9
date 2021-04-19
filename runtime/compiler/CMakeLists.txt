@@ -318,6 +318,8 @@ create_omr_compiler_library(NAME j9jit
 	FILTER ${REMOVED_OMR_FILES}
 )
 
+target_include_directories(j9jit PRIVATE /usr/lpp/hzc/include)
+target_link_directories(j9jit PRIVATE /usr/lpp/hzc/lib)
 add_dependencies(j9jit
 	omrgc_hookgen
 	j9jit_tracegen
@@ -340,6 +342,7 @@ target_link_libraries(j9jit
 		${CMAKE_DL_LIBS}
 )
 
+target_include_directories(j9jit PRIVATE /usr/lpp/hzc/include)
 # This is a bit hokey, but cmake can't track the fact that files are generated across directories.
 # Note: while these are only needed on z, setting the properties unconditionally has no ill-effect.
 set_source_files_properties(
