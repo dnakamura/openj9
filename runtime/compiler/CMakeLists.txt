@@ -319,7 +319,7 @@ create_omr_compiler_library(NAME j9jit
 )
 
 target_include_directories(j9jit PRIVATE /usr/lpp/hzc/include)
-target_link_directories(j9jit PRIVATE /usr/lpp/hzc/lib)
+target_link_libraries(j9jit PRIVATE -L/usr/lpp/hzc/lib)
 add_dependencies(j9jit
 	omrgc_hookgen
 	j9jit_tracegen
