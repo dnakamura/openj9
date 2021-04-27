@@ -290,7 +290,7 @@ elseif(OMR_OS_ZOS)
 		COMPRESS_AOT_DATA
 		MAXMOVE
 	)
-	list(APPEND J9_SHAREDFLAGS -qlsearch=/usr/lpp/hzc/include)
+	list(APPEND J9_SHAREDFLAGS -qsearch=/usr/lpp/hzc/include)
 	set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -L/usr/lpp/hzc/lib")
 else()
 	message(SEND_ERROR "unsupported platform")
