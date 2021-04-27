@@ -290,7 +290,6 @@ elseif(OMR_OS_ZOS)
 		COMPRESS_AOT_DATA
 		MAXMOVE
 	)
-	list(APPEND J9_SHAREDFLAGS -qsearch=/usr/lpp/hzc/include)
 	set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -L/usr/lpp/hzc/lib")
 else()
 	message(SEND_ERROR "unsupported platform")
@@ -332,6 +331,7 @@ add_dependencies(j9jit
 	j9jit_generate
 )
 
+target_include_directories(j9jit BEFORE PRIVATE /usr/lpp/hzc/include)
 target_link_libraries(j9jit
 	PRIVATE
 		j9vm_interface
@@ -347,7 +347,7 @@ target_link_libraries(j9jit
 		j9thr
 		${CMAKE_DL_LIBS}
 )
-#target_link_libraries(j9jit PRIVATE j9zlib)
+target_link_libraries(j9jit PRIVATE zz)
 # This is a bit hokey, but cmake can't track the fact that files are generated across directories.
 # Note: while these are only needed on z, setting the properties unconditionally has no ill-effect.
 set_source_files_properties(
