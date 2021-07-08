@@ -5813,7 +5813,7 @@ typedef struct J9CInterpreterStackFrame {
 	 *
 	 * Stack must be 16-byte aligned.
 	 */
-	U_8 jitFPRs[16 * 16]; /* xmm0-15 128-bit OR xmm0-7 64-bit */
+	U_8 jitFPRs[32 * 64]; /* xmm0-31 512-bit OR xmm0-7 64-bit */
 	UDATA align[1];
 	/* r15,r14,r13,r12,rbx,rbp,return address
 	 * RSP is 16-byte aligned at this point

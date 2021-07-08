@@ -1523,6 +1523,12 @@ onLoadInternal(
       {
       javaVM->extendedRuntimeFlags |= J9_EXTENDED_RUNTIME_USE_VECTOR_REGISTERS;
       }
+#elif defined(TR_TARGET_X86)
+   if(TR::Compiler->target.cpu.supportsAVX())
+      {
+      javaVM->extendedRuntimeFlags |= J9_EXTENDED_RUNTIME_USE_VECTOR_REGISTERS;
+      // TODO: add AVX-512 check here
+      }
 #endif
 
    // create comp threads if compiling on separate thread
