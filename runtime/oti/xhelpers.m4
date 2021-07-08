@@ -27,7 +27,7 @@ define({SYM_COUNT},0)
 define({INC_SYM_COUNT},{define({SYM_COUNT},incr(SYM_COUNT))})
 
 define({SR_TEMP_REG_1}, r8)
-define({SR_TEMP_REG_2}, r9)
+define({SR_TEMP_REG_2}, r9d)
 
 J9CONST({CINTERP_STACK_SIZE},J9TR_cframe_sizeof)
 
