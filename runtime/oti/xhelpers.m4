@@ -420,10 +420,10 @@ ifdef({METHOD_INVOCATION},{
 	dnl J9_EXTENDED_RUNTIME2_USE_EXTENDED_VECTOR_REGISTERS marks if we are using AVX-512 (eg ZMM)
 	dnl No flags means normal SSE registers (XMM)
 	mov SR_TEMP_REG_1, J9TR_VMThread_javaVM[J9VMTHREAD]
-	mov SR_TEMP_REG_2, dword J9TR_JavaVM_extendedRuntimeFlags[SR_TEMP_REG_1]
+	mov SR_TEMP_REG_2, J9TR_JavaVM_extendedRuntimeFlags[SR_TEMP_REG_1]
 	and SR_TEMP_REG_2, J9TR_J9_EXTENDED_RUNTIME_USE_VECTOR_REGISTERS
 	jz LABEL(L_xmm_save{}SYM_COUNT)
-	mov SR_TEMP_REG_2, dword J9TR_JavaVM_extendedRuntimeFlags2[SR_TEMP_REG_1]
+	mov SR_TEMP_REG_2, J9TR_JavaVM_extendedRuntimeFlags2[SR_TEMP_REG_1]
 	and SR_TEMP_REG_2, J9_EXTENDED_RUNTIME2_USE_EXTENDED_VECTOR_REGISTERS
 	jnz LABEL(L_zmm_save{}SYM_COUNT)
 
@@ -476,7 +476,7 @@ ifdef({METHOD_INVOCATION},{
 	dnl J9_EXTENDED_RUNTIME2_USE_EXTENDED_VECTOR_REGISTERS marks if we are using AVX-512 (eg ZMM)
 	dnl No flags means normal SSE registers (XMM)
 	mov SR_TEMP_REG_1, J9TR_VMThread_javaVM[J9VMTHREAD]
-	mov SR_TEMP_REG_2, dword J9TR_JavaVM_extendedRuntimeFlags[SR_TEMP_REG_1]
+	mov SR_TEMP_REG_2, J9TR_JavaVM_extendedRuntimeFlags[SR_TEMP_REG_1]
 	and SR_TEMP_REG_2, J9TR_J9_EXTENDED_RUNTIME_USE_VECTOR_REGISTERS
 	jz LABEL(L_xmm_restore{}SYM_COUNT)
 	mov SR_TEMP_REG_2, J9TR_JavaVM_extendedRuntimeFlags2[SR_TEMP_REG_1]
